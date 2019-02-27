@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ComponentName extends Component {
+class SignupPage extends Component {
   // Component's constructor, remove if not necessary
   constructor(props) {
     super(props);
@@ -13,8 +13,8 @@ class ComponentName extends Component {
   // Component structure and display logic go her
   render() {
     return (
-      <section className="ComponentName">
-        <h2>ComponentTitle</h2>
+      <section className="SignupPage">
+        <h2>SignupPage</h2>
       </section>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./AddArgument.css";
 
-class ComponentName extends Component {
+class AddArgument extends Component {
   // Component's constructor, remove if not necessary
   constructor(props) {
     super(props);
@@ -14,8 +14,8 @@ class ComponentName extends Component {
   // Component structure and display logic go her
   render() {
     return (
-      <section className="ComponentName">
-        <h2>ComponentTitle</h2>
+      <section className="AddArgument">
+        <h2>AddArgument</h2>
       </section>
     );
   }
