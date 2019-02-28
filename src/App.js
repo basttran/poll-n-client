@@ -30,9 +30,13 @@ class App extends Component {
           <Route path="/browse-arguments" component={BrowseArguments} />
           <Route path="/poll-details" component={PollDetails} />
           <Route path="/argument-details" component={ArgumentDetails} />
+          <Route path="/add-poll" component={ArgumentDetails} />
+          <Route path="/add-argument" component={AddArgument} />
+          <Route path="/add-vote" component={AddVote} />
+          <Route path="/update-vote" component={UpdateVote} />
           <Route component={NotFound} />
         </Switch>
-        <footer>
+        <footer className="App-footer">
           <TabBar />
         </footer>
       </div>
