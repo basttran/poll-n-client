@@ -1,25 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+
+import HomePage from "./components/HomePage.js";
+import NavBar from "./components/NavBar.js";
+import TabBar from "./components/TabBar.js";
+import LoginPage from "./components/LoginPage.js";
+import SignupPage from "./components/SignupPage.js";
+import BrowsePolls from "./components/BrowsePolls.js";
+import BrowseArguments from "./components/BrowseArguments.js";
+import PollDetails from "./components/PollDetails.js";
+import ArgumentDetails from "./components/ArgumentDetails.js";
+
+// All the components are provisionally made accessible from the HomePage
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <NavBar />
         </header>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login-form" component={LoginPage} />
+          <Route path="/signup-form" component={SignupPage} />
+          <Route path="/browse-polls" component={BrowsePolls} />
+          <Route path="/browse-arguments" component={BrowseArguments} />
+          <Route path="/poll-details" component={PollDetails} />
+          <Route path="/argument-details" component={ArgumentDetails} />
+        </Switch>
+        <footer>
+          <TabBar />
+        </footer>
       </div>
     );
   }
