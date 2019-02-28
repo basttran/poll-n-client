@@ -1,9 +1,3 @@
-// The code hereafter is copied from the ironphone-client example
-// with extra comments. The section that is currently specific to the
-// ironphone example app is commented out so as to serve as guidance for
-// the current app (poll-n)
-// #####################################################################
-
 import axios from "axios";
 
 // create an Axios object with pre-configured settings

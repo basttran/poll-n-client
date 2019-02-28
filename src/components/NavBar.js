@@ -3,53 +3,36 @@ import { NavLink } from "react-router-dom";
 
 import "./NavBar.css";
 
-class NavBar extends Component {
-  // Component's constructor, remove if not necessary
-  constructor(props) {
-    super(props);
-    // Component's state, remove if not necessary
-    this.state = {};
-  }
-  // Component's method
-  componentMethod() {}
+import { getLogOut } from "../api.js";
 
-  // Component structure and display logic go her
+class NavBar extends Component {
+  logoutClick() {
+    getLogOut().then(response => {
+      console.log("Log Out", response.data);
+      this.updateUser(null);
+    });
+  }
+
   render() {
     return (
       <section className="NavBar">
-        <h2>poll-n</h2>
+        <h2>Poll N</h2>
         <NavLink exact to="/">
           Home
         </NavLink>
-        <NavLink exact to="/login-form">
-          Log In
-        </NavLink>
-        <NavLink exact to="/signup-form">
-          Sign In
-        </NavLink>
+        {this.state.currentUser ? (
+          <span>
+            <b>{this.state.currentUser.username}</b>
+            <button onClick={() => this.logoutClick()}>Log Out</button>
+          </span>
+        ) : (
+          <span>
+            <NavLink to="/signup-page">Sign Up</NavLink>
+            <NavLink to="/login-page">Log In</NavLink>
+          </span>
+        )}
         <NavLink exact to="/browse-polls">
           Browse Polls
-        </NavLink>
-        <NavLink exact to="/browse-arguments">
-          Browse Arguments
-        </NavLink>
-        <NavLink exact to="/poll-details">
-          Poll's details
-        </NavLink>
-        <NavLink exact to="/argument-details">
-          Argument's details
-        </NavLink>
-        <NavLink exact to="/add-poll">
-          Create Poll
-        </NavLink>
-        <NavLink exact to="/add-argument">
-          Create Argument
-        </NavLink>
-        <NavLink exact to="/add-vote">
-          Create Vote
-        </NavLink>
-        <NavLink exact to="/update-vote">
-          Update Vote
         </NavLink>
       </section>
     );

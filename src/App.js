@@ -16,8 +16,6 @@ import SignupPage from "./components/auth/SignupPage.js";
 // import EditVote from "./components/vote/EditVote.js/index.js";
 import NotFound from "./components/NotFound.js";
 
-import { getLogOut } from "./api";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,13 +38,6 @@ class App extends Component {
       localStorage.removeItem("currentUser");
     }
     this.setState({ currentUser: newUser });
-  }
-
-  logoutClick() {
-    getLogOut().then(response => {
-      console.log("Log Out", response.data);
-      this.updateUser(null);
-    });
   }
 
   render() {
