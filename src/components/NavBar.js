@@ -14,15 +14,16 @@ class NavBar extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <section className="NavBar">
         <h2>Poll N</h2>
         <NavLink exact to="/">
           Home
         </NavLink>
-        {this.state.currentUser ? (
+        {currentUser ? (
           <span>
-            <b>{this.state.currentUser.username}</b>
+            <b>{currentUser.username}</b>
             <button onClick={() => this.logoutClick()}>Log Out</button>
           </span>
         ) : (

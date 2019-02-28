@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <NavBar />
+          <NavBar currentUser={this.state.currentUser} />
         </header>
         <Switch>
           <Route exact path="/" component={HomePage} />
