@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage.js";
 import NavBar from "./components/NavBar.js";
 import LoginPage from "./components/auth/LoginPage.js";
 import SignupPage from "./components/auth/SignupPage.js";
-// import BrowsePolls from "./components/BrowsePolls.js";
+import BrowsePolls from "./components/vote/BrowsePolls.js";
 // import BrowseArguments from "./components/vote/BrowseArguments.js";
 // import PollDetails from "./components/vote/PollDetails.js/index.js";
 // import ArgumentDetails from "./components/vote/ArgumentDetails.js";
@@ -70,14 +70,7 @@ class App extends Component {
               );
             }}
           />
-          {/* <Route path="/browse-polls" component={BrowsePolls} />
-          <Route path="/browse-arguments" component={BrowseArguments} />
-          <Route path="/poll-details" component={PollDetails} />
-          <Route path="/argument-details" component={ArgumentDetails} />
-          <Route path="/add-poll" component={AddPoll} />
-          <Route path="/add-argument" component={AddArgument} />
-          <Route path="/add-vote" component={AddVote} />
-          <Route path="/edit-vote" component={EditVote} /> */}
+          <Route path="/browse-polls" component={BrowsePolls} />
           <Route component={NotFound} />
         </Switch>
       </div>
