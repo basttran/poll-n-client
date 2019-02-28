@@ -16,6 +16,14 @@ class AddPoll extends Component {
     return (
       <section className="AddPoll">
         <h2>AddPoll</h2>
+        <form>
+          <label>
+            <input />
+          </label>
+          <label>
+            <input />
+          </label>
+        </form>
       </section>
     );
   }

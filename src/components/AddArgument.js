@@ -16,6 +16,15 @@ class AddArgument extends Component {
     return (
       <section className="AddArgument">
         <h2>AddArgument</h2>
+        <form>
+          <label>
+            <input />
+          </label>
+          <label>
+            <input />
+          </label>
+        </form>
+      </section>
       </section>
     );
   }

@@ -16,6 +16,24 @@ class LoginPage extends Component {
     return (
       <section className="LoginPage">
         <h2>LoginPage</h2>
+        <form className="LoginForm">
+          <label>
+            Email:{" "}
+            <input
+              type="email"
+              name="email"
+              placeholder="mymail@mailprovider.org"
+            />
+          </label>
+          <label>
+            Password:{" "}
+            <input
+              type="password"
+              name="password"
+              placeholder="Don't tell anyone..."
+            />
+          </label>
+        </form>
       </section>
     );
   }

@@ -34,9 +34,9 @@ function errorHandler(err) {
 // We will however probably need similar functions for our app
 // ---------------------------------------------------------------------
 
-// export function getPhoneList() {
-//   return backendApi.get("/api/phones").catch(errorHandler);
-// }
+export function getPollList() {
+  return backendApi.get("/api/polls").catch(errorHandler);
+}
 
 // export function getPhoneDetails(phoneId) {
 //   return backendApi.get(`/api/phones/${phoneId}`).catch(errorHandler);

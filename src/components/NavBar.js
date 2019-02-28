@@ -46,7 +46,10 @@ class NavBar extends Component {
           Create Argument
         </NavLink>
         <NavLink exact to="/add-vote">
-          Push Vote
+          Create Vote
+        </NavLink>
+        <NavLink exact to="/update-vote">
+          Update Vote
         </NavLink>
       </section>
     );
