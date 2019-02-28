@@ -11,6 +11,11 @@ import BrowsePolls from "./components/BrowsePolls.js";
 import BrowseArguments from "./components/BrowseArguments.js";
 import PollDetails from "./components/PollDetails.js";
 import ArgumentDetails from "./components/ArgumentDetails.js";
+import AddArgument from "./components/AddArgument.js";
+import AddPoll from "./components/AddPoll.js";
+import AddVote from "./components/AddVote.js";
+import UpdateVote from "./components/UpdateVote.js";
+
 import NotFound from "./components/NotFound.js";
 
 // All the components are provisionally made accessible from the HomePage
@@ -30,7 +35,7 @@ class App extends Component {
           <Route path="/browse-arguments" component={BrowseArguments} />
           <Route path="/poll-details" component={PollDetails} />
           <Route path="/argument-details" component={ArgumentDetails} />
-          <Route path="/add-poll" component={ArgumentDetails} />
+          <Route path="/add-poll" component={AddPoll} />
           <Route path="/add-argument" component={AddArgument} />
           <Route path="/add-vote" component={AddVote} />
           <Route path="/update-vote" component={UpdateVote} />
