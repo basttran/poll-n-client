@@ -4,13 +4,9 @@
 // the current app (poll-n)
 // #####################################################################
 
-// #####################################################
-// This first section will probably remain useful anyway
-// -----------------------------------------------------
 import axios from "axios";
 
 // create an Axios object with pre-configured settings
-
 const backendApi = axios.create({
   baseURL: "http://localhost:5555",
   // send cookies to the backend on every request
@@ -29,35 +25,30 @@ function errorHandler(err) {
   throw err;
 }
 
-// #####################################################################
-// This second section's names and functions are specific to ironphones.
-// We will however probably need similar functions for our app
-// ---------------------------------------------------------------------
-
 export function getPollList() {
   return backendApi.get("/api/polls").catch(errorHandler);
 }
 
-// export function getPhoneDetails(phoneId) {
-//   return backendApi.get(`/api/phones/${phoneId}`).catch(errorHandler);
-// }
+export function getPollDetails(pollId) {
+  return backendApi.get(`/api/polls/${pollId}`).catch(errorHandler);
+}
 
-// export function postPhone(phoneSubmission) {
-//   return backendApi.post("/api/phones", phoneSubmission).catch(errorHandler);
-// }
+export function postPoll(phoneSubmission) {
+  return backendApi.post("/api/polls", phoneSubmission).catch(errorHandler);
+}
 
-// export function postSignUp(userSubmission) {
-//   return backendApi
-//     .post("/api/process-signup", userSubmission)
-//     .catch(errorHandler);
-// }
+export function postSignUp(userSubmission) {
+  return backendApi
+    .post("/api/process-signup", userSubmission)
+    .catch(errorHandler);
+}
 
-// export function postLogIn(loginCredentials) {
-//   return backendApi
-//     .post("/api/process-login", loginCredentials)
-//     .catch(errorHandler);
-// }
+export function postLogIn(loginCredentials) {
+  return backendApi
+    .post("/api/process-login", loginCredentials)
+    .catch(errorHandler);
+}
 
-// export function getLogOut() {
-//   return backendApi.post("/api/logout").catch(errorHandler);
-// }
+export function getLogOut() {
+  return backendApi.post("/api/logout").catch(errorHandler);
+}

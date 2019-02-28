@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./AddPoll.css";
+import { postPoll } from "../../api.js";
+import { Redirect } from "react-router-dom";
 
 class AddPoll extends Component {
   constructor(props) {
@@ -37,31 +39,20 @@ class AddPoll extends Component {
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.shortText}
-              name="phoneModel"
+              name="shortText"
               type="text"
-              placeholder="iPhone Xs"
+              placeholder="Title here."
             />
           </label>
 
           <label>
-            Brand:{" "}
+            Description:{" "}
             <input
               onChange={event => this.genericOnChange(event)}
-              value={this.state.brand}
-              name="brand"
+              value={this.state.longText}
+              name="longText"
               type="text"
-              placeholder="Apple"
-            />
-          </label>
-
-          <label>
-            Price:{" "}
-            <input
-              onChange={event => this.genericOnChange(event)}
-              value={this.state.price}
-              name="price"
-              type="number"
-              placeholder="1155"
+              placeholder="Description here."
             />
           </label>
 
@@ -76,18 +67,7 @@ class AddPoll extends Component {
             />
           </label>
 
-          <label>
-            Specs:{" "}
-            <input
-              onChange={event => this.genericOnChange(event)}
-              value={this.state.specs}
-              name="specs"
-              type="text"
-              placeholder="great camera, 8-hour battery"
-            />
-          </label>
-
-          <button>Submit This Phone</button>
+          <button>Submit This Poll</button>
         </form>
       </section>
     );
