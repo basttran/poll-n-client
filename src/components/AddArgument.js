@@ -25,7 +25,6 @@ class AddArgument extends Component {
           </label>
         </form>
       </section>
-      </section>
     );
   }
 }
