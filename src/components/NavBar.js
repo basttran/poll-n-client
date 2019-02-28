@@ -10,23 +10,32 @@ class NavBar extends Component {
     // Component's state, remove if not necessary
     this.state = {};
   }
-  // Component's method
-  componentMethod() {}
 
   // Component structure and display logic go her
   render() {
+    const { currentUser } = this.props;
     return (
       <section className="NavBar">
         <h2>poll-n</h2>
         <NavLink exact to="/">
           Home
         </NavLink>
-        <NavLink exact to="/login-form">
-          Log In
-        </NavLink>
-        <NavLink exact to="/signup-form">
-          Sign In
-        </NavLink>
+
+        {currentUser ? (
+          <div>
+            <h3>{currentUser.username}</h3>
+          </div>
+        ) : (
+          <div>
+            <NavLink exact to="/login-form">
+              Log In
+            </NavLink>
+            <NavLink exact to="/signup-form">
+              Sign In
+            </NavLink>
+          </div>
+        )}
+
         <NavLink exact to="/browse-polls">
           Browse Polls
         </NavLink>
