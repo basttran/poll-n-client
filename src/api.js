@@ -27,8 +27,8 @@ export function getPollDetails(pollId) {
   return backendApi.get(`/api/polls/${pollId}`).catch(errorHandler);
 }
 
-export function postPoll(phoneSubmission) {
-  return backendApi.post("/api/polls", phoneSubmission).catch(errorHandler);
+export function postPoll(pollSubmission) {
+  return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
 }
 
 export function postSignUp(userSubmission) {

@@ -21,9 +21,11 @@ class AddPoll extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    postPoll(this.state).then(() =>
-      this.setState({ isSubmitSuccessful: true })
-    );
+    console.log("about to postPoll()", event);
+    postPoll(this.state).then(response => {
+      console.log("Add Poll", response.data);
+      this.setState({ isSubmitSuccessful: true });
+    });
   }
 
   render() {
