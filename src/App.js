@@ -11,6 +11,7 @@ import BrowsePolls from "./components/BrowsePolls.js";
 import BrowseArguments from "./components/BrowseArguments.js";
 import PollDetails from "./components/PollDetails.js";
 import ArgumentDetails from "./components/ArgumentDetails.js";
+import NotFound from "./components/NotFound.js";
 
 // All the components are provisionally made accessible from the HomePage
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/browse-arguments" component={BrowseArguments} />
           <Route path="/poll-details" component={PollDetails} />
           <Route path="/argument-details" component={ArgumentDetails} />
+          <Route component={NotFound} />
         </Switch>
         <footer>
           <TabBar />
