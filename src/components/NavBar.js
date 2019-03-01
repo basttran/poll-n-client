@@ -41,12 +41,12 @@ class NavBar extends Component {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/browse-polls">
-                  Browse All Polls
+                  Browse
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/add-poll">
-                  Create New Poll
+                  Create
                 </NavLink>
               </li>
             </ul>
