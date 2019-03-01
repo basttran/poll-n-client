@@ -13,8 +13,10 @@ function errorHandler(err) {
   } else {
     console.log("React Code Error", err.response);
   }
+
   // alert a generic message for the user
-  alert("Sorry! Something went wrong. Try again later.");
+  //alert("Sorry! Something went wrong. Try again later.");
+
   // cause the error again so the .then() won't be called
   throw err;
 }

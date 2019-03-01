@@ -10,7 +10,8 @@ class SignupPage extends Component {
       username: "",
       originalPassword: "",
       originalEmail: "",
-      originalUsercode: ""
+      originalUsercode: "",
+      errorMessage: ""
     };
   }
 
@@ -21,10 +22,22 @@ class SignupPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    postSignUp(this.state).then(response => {
-      console.log("Sign Up Result", response.data);
-      this.props.signupSuccess(response.data);
-    });
+    postSignUp(this.state)
+      .then(response => {
+        this.setState({
+          username: "",
+          originalPassword: "",
+          originalEmail: "",
+          originalUsercode: "",
+          errorMessage: ""
+        });
+        console.log("Sign Up Result", response.data);
+        this.props.signupSuccess(response.data);
+      })
+      .catch(err => {
+        this.setState({ errorMessage: err.response.data.message });
+      });
+    // Commented until we decide to catch errors and display informative messages to users like "username does exist" etc.
     // .catch(err => {
     //   console.log("Special Error", err.response.data);
     // });
@@ -42,6 +55,10 @@ class SignupPage extends Component {
         ) : (
           <div>
             <h2>Sign Up</h2>
+
+            {this.state.errorMessage && (
+              <div className="error-message">{this.state.errorMessage}</div>
+            )}
 
             <form onSubmit={event => this.handleSubmit(event)}>
               <label>
