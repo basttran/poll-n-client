@@ -31,6 +31,20 @@ export function postPoll(pollSubmission) {
   return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
 }
 
+export function getArgumentList() {
+  return backendApi.get("/api/arguments").catch(errorHandler);
+}
+
+export function getArgumentDetails(argumentId) {
+  return backendApi.get(`/api/arguments/${argumentId}`).catch(errorHandler);
+}
+
+export function postArgument(argumentSubmission) {
+  return backendApi
+    .post("/api/arguments", argumentSubmission)
+    .catch(errorHandler);
+}
+
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)

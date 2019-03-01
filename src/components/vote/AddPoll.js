@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./AddPoll.css";
 import { postPoll } from "../../api.js";
 import { Redirect } from "react-router-dom";
+// not sure we are currently redirecting | needs to be checked
 
 class AddPoll extends Component {
   constructor(props) {
