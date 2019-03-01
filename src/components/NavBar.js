@@ -35,6 +35,9 @@ class NavBar extends Component {
         <NavLink exact to="/browse-polls">
           Browse Polls
         </NavLink>
+        <NavLink exact to="/add-poll">
+          Create New Poll
+        </NavLink>
       </section>
     );
   }
