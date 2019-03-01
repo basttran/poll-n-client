@@ -7,13 +7,6 @@ import NavBar from "./components/NavBar.js";
 import LoginPage from "./components/auth/LoginPage.js";
 import SignupPage from "./components/auth/SignupPage.js";
 import BrowsePolls from "./components/vote/BrowsePolls.js";
-// import BrowseArguments from "./components/vote/BrowseArguments.js";
-// import PollDetails from "./components/vote/PollDetails.js/index.js";
-// import ArgumentDetails from "./components/vote/ArgumentDetails.js";
-// import AddArgument from "./components/vote/AddArgument.js/index.js";
-// import AddPoll from "./components/vote/AddPoll.js/index.js";
-// import AddVote from "./components/vote/AddVote.js";
-// import EditVote from "./components/vote/EditVote.js/index.js";
 import NotFound from "./components/NotFound.js";
 
 class App extends Component {
@@ -44,7 +37,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <NavBar currentUser={this.state.currentUser} />
+          <NavBar
+            currentUser={this.state.currentUser}
+            logoutConfirmed={() => this.updateUser(null)}
+          />
         </header>
         <Switch>
           <Route exact path="/" component={HomePage} />

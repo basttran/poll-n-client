@@ -44,5 +44,5 @@ export function postLogIn(loginCredentials) {
 }
 
 export function getLogOut() {
-  return backendApi.post("/api/logout").catch(errorHandler);
+  return backendApi.get("/api/logout").catch(errorHandler);
 }

@@ -8,8 +8,8 @@ import { getLogOut } from "../api.js";
 class NavBar extends Component {
   logoutClick() {
     getLogOut().then(response => {
-      console.log("Log Out", response.data);
-      this.updateUser(null);
+      console.log("Log Out OK", response.data);
+      this.props.logoutConfirmed();
     });
   }
 

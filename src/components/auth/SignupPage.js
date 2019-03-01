@@ -25,6 +25,9 @@ class SignupPage extends Component {
       console.log("Sign Up Result", response.data);
       this.props.signupSuccess(response.data);
     });
+    // .catch(err => {
+    //   console.log("Special Error", err.response.data);
+    // });
   }
 
   render() {
@@ -45,7 +48,7 @@ class SignupPage extends Component {
                 Username:
                 <input
                   onChange={event => this.genericOnChange(event)}
-                  value={this.state.fullName}
+                  value={this.state.username}
                   name="username"
                   type="text"
                   placeholder="Please insert a non-identifiable username."
@@ -67,8 +70,8 @@ class SignupPage extends Component {
                 Email:
                 <input
                   onChange={event => this.genericOnChange(event)}
-                  value={this.state.email}
-                  name="email"
+                  value={this.state.originalEmail}
+                  name="originalEmail"
                   type="email"
                   placeholder="john@doe.com"
                 />
@@ -78,9 +81,9 @@ class SignupPage extends Component {
                 Social Security Number:
                 <input
                   onChange={event => this.genericOnChange(event)}
-                  value={this.state.email}
-                  name="usercode"
-                  type="usercode"
+                  value={this.state.originalUsercode}
+                  name="originalUsercode"
+                  type="text"
                   placeholder="Your social security number here."
                 />
               </label>
