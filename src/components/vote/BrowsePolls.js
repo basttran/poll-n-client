@@ -25,25 +25,47 @@ class BrowsePolls extends Component {
 
     return (
       <section className="BrowsePolls">
-        <h2>Browse Polls</h2>
-
-        <Link className="addButton" to="/add-poll">
-          Submit a new Poll
-        </Link>
-
-        <ul>
+        <div className="card-group">
           {pollArray.map(onePoll => {
             return (
-              <li key={onePoll._id}>
-                <h4>
-                  <Link to={getPollAddress(onePoll)}>{onePoll.shortText}</Link>
-                </h4>
-                <p>{onePoll.longText}</p>
-                <img src={onePoll.image} alt={onePoll.shortText} />
-              </li>
+              <div className="card" key={onePoll._id}>
+                <img
+                  className="card-img-top"
+                  src={onePoll.image}
+                  alt={onePoll.shortText}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{onePoll.shortText}</h5>
+                  <p className="card-text">{onePoll.longText}</p>
+                </div>
+                <div className="row">
+                  <div className="col-4">
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">Pro #1</li>
+                      <li className="list-group-item">Pro #1</li>
+                      <li className="list-group-item">Pro #1</li>
+                    </ul>
+                  </div>
+                  <div className="col-4" />
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Con #1</li>
+                    <li className="list-group-item">Con #2</li>
+                    <li className="list-group-item">Con #3</li>
+                  </ul>
+                </div>
+
+                <div className="card-body">
+                  <Link className="card-link" to={getPollAddress(onePoll)}>
+                    Poll Details
+                  </Link>
+                  <Link className="card-link" to="/add-argument">
+                    Add Argument
+                  </Link>
+                </div>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </section>
     );
   }
