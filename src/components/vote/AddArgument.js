@@ -37,9 +37,11 @@ class AddArgument extends Component {
     });
   }
   render() {
+    const { pollId } = this.state;
     return (
       <section className="AddArgument">
         <h2>AddArgument</h2>
+        <h3>{pollId}</h3>
         <form>
           <label>
             Title:{" "}

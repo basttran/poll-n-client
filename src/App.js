@@ -74,8 +74,7 @@ class App extends Component {
             }}
           />
           <Route path="/add-poll" component={AddPoll} />
-          {/* <Route path="/add-argument" component={AddArgument} /> */}
-
+          <Route path="/polls/:pollId/add-argument" component={AddArgument} />
           <Route path="/browse-polls" component={BrowsePolls} />
           <Route path="/poll-details/:pollId" component={PollDetails} />
           <Route component={NotFound} />
