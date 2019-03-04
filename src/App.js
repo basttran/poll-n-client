@@ -74,10 +74,14 @@ class App extends Component {
             }}
           />
           <Route path="/add-poll" component={AddPoll} />
-          {/* <Route path="/add-argument" component={AddArgument} /> */}
-
           <Route path="/browse-polls" component={BrowsePolls} />
           <Route path="/poll-details/:pollId" component={PollDetails} />
+          {/* <Route
+            path="/add-argument"
+            render={() => {
+              return <AddArgument pollId={pollItem._id} />;
+            }}
+          /> */}
           <Route component={NotFound} />
         </Switch>
       </div>

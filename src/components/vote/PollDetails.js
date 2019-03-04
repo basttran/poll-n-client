@@ -1,62 +1,38 @@
 import React, { Component } from "react";
 import "./PollDetails.css";
-import { Link, Route, Switch } from "react-router-dom";
-// import axios from "axios";
+import { Link } from "react-router-dom";
 
 import { getPollDetails } from "../../api.js";
-import { getArgumentList } from "../../api.js";
-import AddArgument from "./AddArgument.js";
 
 class PollDetails extends Component {
-  // Component's constructor, remove if not necessary
   constructor(props) {
     super(props);
-    // Component's state, remove if not necessary
-    this.state = {
-      pollItem: {}
-    };
+    this.state = { pollItem: { arguments: [] } };
   }
-  // Component's method
-  componentDidMount() {
-    // axios.get(
-    //   "http://localhost:5555/api/arguments",
-    //   // send cookies to the backend on every request
-    //   { withCredentials: true }
-    // );
 
-    // get path params from React router props
+  componentDidMount() {
     const { params } = this.props.match;
-    // use the ID in path params to get the details from the backend API
     getPollDetails(params.pollId).then(response => {
       console.log("Poll Details", response.data);
       this.setState({ pollItem: response.data });
     });
-    getArgumentList().then(response => {
-      console.log("Argument List", response.data);
-      this.setState({ argumentArray: response.data });
-    });
   }
 
-  // Component structure and display logic go her
   render() {
     const { pollItem } = this.state;
     return (
       <section className="PollDetails">
-        <h2>PollDetails</h2>
         <h3>{pollItem.shortText}</h3>
         <p>{pollItem.longText}</p>
         <img src={pollItem.image} alt={pollItem.shortText} />
-        <Link className="addButton" to="/add-argument">
+        <ul>
+          {pollItem.arguments.map((argumentItem, index) => {
+            return <li key={index}>{argumentItem.shortText}</li>;
+          })}
+        </ul>
+        <Link className="card-link" to="/add-argument">
           Submit a new Argument
         </Link>
-        <Switch>
-          <Route
-            path="/add-argument"
-            render={() => {
-              return <AddArgument pollId={pollItem._id} />;
-            }}
-          />
-        </Switch>
       </section>
     );
   }

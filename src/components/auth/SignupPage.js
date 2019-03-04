@@ -37,10 +37,6 @@ class SignupPage extends Component {
       .catch(err => {
         this.setState({ errorMessage: err.response.data.message });
       });
-    // Commented until we decide to catch errors and display informative messages to users like "username does exist" etc.
-    // .catch(err => {
-    //   console.log("Special Error", err.response.data);
-    // });
   }
 
   render() {
@@ -49,63 +45,76 @@ class SignupPage extends Component {
       <section className="SignupPage">
         {currentUser ? (
           <div>
-            <h2>You are signed up!</h2>
+            <h2>You are (already) signed up!</h2>
             <p>Welcome, {currentUser.username}!</p>
           </div>
         ) : (
           <div>
-            <h2>Sign Up</h2>
+            <h4>Sign Up</h4>
 
             {this.state.errorMessage && (
               <div className="error-message">{this.state.errorMessage}</div>
             )}
 
             <form onSubmit={event => this.handleSubmit(event)}>
-              <label>
-                Username:
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
                 <input
                   onChange={event => this.genericOnChange(event)}
                   value={this.state.username}
                   name="username"
                   type="text"
-                  placeholder="Please insert a non-identifiable username."
+                  className="form-control"
+                  id="username"
+                  placeholder="Enter username."
                 />
-              </label>
+                <small id="usernameHelp" className="form-text text-muted">
+                  Make sure this username isn't too easily identifiable.
+                </small>
+              </div>
 
-              <label>
-                Password:
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input
                   onChange={event => this.genericOnChange(event)}
                   value={this.state.originalPassword}
                   name="originalPassword"
                   type="password"
+                  className="form-control"
+                  id="password"
                   placeholder="Password here."
                 />
-              </label>
+              </div>
 
-              <label>
-                Email:
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
                 <input
                   onChange={event => this.genericOnChange(event)}
                   value={this.state.originalEmail}
                   name="originalEmail"
                   type="email"
-                  placeholder="john@doe.com"
+                  className="form-control"
+                  id="email"
+                  placeholder="Email here."
                 />
-              </label>
+              </div>
 
-              <label>
-                Social Security Number:
+              <div className="form-group">
+                <label htmlFor="usercode">Social Security Number</label>
                 <input
                   onChange={event => this.genericOnChange(event)}
                   value={this.state.originalUsercode}
                   name="originalUsercode"
                   type="text"
-                  placeholder="Your social security number here."
+                  className="form-control"
+                  id="usercode"
+                  placeholder="Your Social Security Number here."
                 />
-              </label>
+              </div>
 
-              <button>Sign Up</button>
+              <button type="submit" className="btn btn-primary">
+                Sign Up
+              </button>
             </form>
           </div>
         )}

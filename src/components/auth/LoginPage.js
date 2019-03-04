@@ -31,32 +31,42 @@ class LoginPage extends Component {
       <Redirect to="/browse-polls" />
     ) : (
       <section className="LoginPage">
-        <h2>Log In</h2>
+        <h4>Log In</h4>
+
+        {this.state.errorMessage && (
+          <div className="error-message">{this.state.errorMessage}</div>
+        )}
 
         <form onSubmit={event => this.handleSubmit(event)}>
-          <label>
-            Username:
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.username}
               name="username"
               type="text"
-              placeholder="Your username here."
+              className="form-control"
+              id="username"
+              placeholder="Enter username."
             />
-          </label>
+          </div>
 
-          <label>
-            Password:
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.originalPassword}
               name="originalPassword"
               type="password"
-              placeholder="Your password here."
+              className="form-control"
+              id="password"
+              placeholder="Enter username."
             />
-          </label>
+          </div>
 
-          <button>Log In</button>
+          <button type="submit" className="btn btn-primary">
+            Log In
+          </button>
         </form>
       </section>
     );

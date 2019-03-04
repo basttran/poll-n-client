@@ -35,43 +35,43 @@ class AddPoll extends Component {
     ) : (
       <section className="AddPoll">
         <form onSubmit={event => this.handleSubmit(event)}>
-          <div class="form-group">
-            <label for="pollTitle">Title</label>
+          <div className="form-group">
+            <label htmlFor="pollTitle">Title</label>
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.shortText}
               name="shortText"
               type="text"
-              class="form-control"
+              className="form-control"
               id="pollTitle"
               placeholder="Enter title."
             />
           </div>
-          <div class="form-group">
-            <label for="pollDesc">Description</label>
+          <div className="form-group">
+            <label htmlFor="pollDesc">Description</label>
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.longText}
               name="longText"
               type="text"
-              class="form-control"
+              className="form-control"
               id="pollDesc"
               placeholder="Enter description."
             />
           </div>
-          <div class="form-group">
-            <label for="pollImage">Image URL</label>
+          <div className="form-group">
+            <label htmlFor="pollImage">Image URL</label>
             <input
               onChange={event => this.genericOnChange(event)}
               value={this.state.image}
               name="image"
               type="url"
-              class="form-control"
+              className="form-control"
               id="pollImage"
               placeholder="Enter Image URL."
             />
           </div>
-          <button type="submit" class="btn btn-info">
+          <button type="submit" className="btn btn-info">
             Submit This Poll
           </button>
         </form>
