@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 
 import { getPollDetails } from "../../api.js";
 
+function postPollAddress(poll) {
+  return `/polls/${poll._id}/add-argument`;
+}
+
 class PollDetails extends Component {
   constructor(props) {
     super(props);

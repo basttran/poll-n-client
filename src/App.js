@@ -9,11 +9,7 @@ import SignupPage from "./components/auth/SignupPage.js";
 import BrowsePolls from "./components/vote/BrowsePolls.js";
 import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
-// import BrowseArguments from "./components/vote/BrowseArguments.js";
-// import ArgumentDetails from "./components/vote/ArgumentDetails.js";
-//import AddArgument from "./components/vote/AddArgument.js";
-// import AddVote from "./components/vote/AddVote.js";
-// import EditVote from "./components/vote/EditVote.js/index.js";
+import AddArgument from "./components/vote/AddArgument.js";
 import NotFound from "./components/NotFound.js";
 
 class App extends Component {
@@ -74,14 +70,9 @@ class App extends Component {
             }}
           />
           <Route path="/add-poll" component={AddPoll} />
+          <Route path="/polls/:pollId/add-argument" component={AddArgument} />
           <Route path="/browse-polls" component={BrowsePolls} />
           <Route path="/poll-details/:pollId" component={PollDetails} />
-          {/* <Route
-            path="/add-argument"
-            render={() => {
-              return <AddArgument pollId={pollItem._id} />;
-            }}
-          /> */}
           <Route component={NotFound} />
         </Switch>
       </div>
