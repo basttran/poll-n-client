@@ -11,6 +11,7 @@ import PopularPolls from "./components/vote/PopularPolls.js";
 import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
 import NotFound from "./components/NotFound.js";
+import ProfilePage from "./components/auth/ProfilePage.js";
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,17 @@ class App extends Component {
             path="/"
             render={() => {
               return <HomePage currentUser={this.state.currentUser} />;
+            }}
+          />
+          <Route
+            path="/user-profile"
+            render={() => {
+              return (
+                <ProfilePage
+                  currentUser={this.state.currentUser}
+                  // signupSuccess={user => this.updateUser(user)}
+                />
+              );
             }}
           />
           <Route
