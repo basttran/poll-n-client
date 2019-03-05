@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getPollDetails } from "../../api.js";
 
 function postPollAddress(poll) {
-  return `/polls/${poll._id}/add-argument`;
+  return `/arguments/${poll._id}/add-argument`;
 }
 
 class PollDetails extends Component {
@@ -34,7 +34,7 @@ class PollDetails extends Component {
             return <li key={index}>{argumentItem.shortText}</li>;
           })}
         </ul>
-        <Link className="card-link" to="/add-argument">
+        <Link className="card-link" to={postPollAddress(pollItem)}>
           Submit a new Argument
         </Link>
       </section>

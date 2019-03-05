@@ -41,9 +41,9 @@ export function getArgumentDetails(argumentId) {
   return backendApi.get(`/api/arguments/${argumentId}`).catch(errorHandler);
 }
 
-export function postArgument(argumentSubmission) {
+export function postArgument(pollId, argumentSubmission) {
   return backendApi
-    .post("/api/arguments", argumentSubmission)
+    .post(`/api/arguments/${pollId}/add-argument`, argumentSubmission)
     .catch(errorHandler);
 }
 

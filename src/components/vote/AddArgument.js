@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import "./AddArgument.css";
 import { postArgument } from "../../api.js";
+import { Redirect } from "react-router-dom";
+
 // import { Redirect } from "react-router-dom";
 // not sure we are currently redirecting | needs to be checked
+
+function getPollAddress(poll) {
+  return `/polls/${poll._id}`;
+}
 
 class AddArgument extends Component {
   constructor(props) {
@@ -31,18 +37,20 @@ class AddArgument extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("about to postPoll()", event);
-    postArgument(this.state).then(response => {
+    postArgument(this.state.pollId, this.state).then(response => {
       console.log("Add Argument", response.data);
       this.setState({ isSubmitSuccessful: true });
     });
   }
   render() {
     const { pollId } = this.state;
-    return (
+    return (this.state.isSubmitSuccessful ? (
+        <Redirect to={getPollAddress(pollId)} /> // pollId can be undefined
+      ) : (
       <section className="AddArgument">
         <h2>AddArgument</h2>
         <h3>{pollId}</h3>
-        <form>
+        <form onSubmit={event => this.handleSubmit(event)}>
           <label>
             Title:{" "}
             <input
@@ -76,6 +84,7 @@ class AddArgument extends Component {
           <button>Submit Argument</button>
         </form>
       </section>
+      )
     );
   }
 }
