@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
 import "./SignupPage.css";
 import { postSignUp } from "../../api.js";
 
@@ -44,10 +44,7 @@ class SignupPage extends Component {
     return (
       <section className="SignupPage">
         {currentUser ? (
-          <div>
-            <h2>You are (already) signed up!</h2>
-            <p>Welcome, {currentUser.username}!</p>
-          </div>
+          <Redirect to="/" />
         ) : (
           <div>
             <h4>Sign Up</h4>

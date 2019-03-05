@@ -4,71 +4,64 @@ import "./HomePage.css";
 
 class HomePage extends Component {
   render() {
+    const { currentUser } = this.props;
     return (
       <section className="HomePage">
-        <p>Welcome to Poll-N!</p>
+        <h1 className="polln-title">Poll(n)</h1>
+        <img src="pollN-logo-img.png" alt="pollN-logo-img" />
 
-        {/* <canvas id="canvas" />
-
-        <div id="interface">
-          Message:
-          <input
-            id="message"
-            type="text"
-            value="poll^(n)"
-            onchange="change()"
-          />
-          Gravity:
-          <input
-            onchange="changeV()"
-            type="range"
-            id="2"
-            value="0"
-            max="1"
-            min="-1"
-            step="0.1"
-          />
-          Duration:
-          <input
-            onchange="changeV()"
-            type="range"
-            id="3"
-            value=".4"
-            max="0.99"
-            min="0.1"
-            step="0.01"
-          />
-          Speed:
-          <input
-            onchange="changeV()"
-            type="range"
-            id="5"
-            value=".1"
-            max="5"
-            min="0"
-            step="0.01"
-          />
-          Radius:
-          <input
-            onchange="changeV()"
-            type="range"
-            id="6"
-            value="2"
-            max="20"
-            min="1.8"
-            step="0.1"
-          />
-          Resolution:
-          <input
-            type="range"
-            id="4"
-            value="5"
-            max="20"
-            min="3"
-            step="1"
-            onchange="change()"
-          />
-        </div> */}
+        {currentUser ? (
+          <div>
+            <h2>
+              Welcome <b>{currentUser.username}</b> !
+            </h2>
+            <div>
+              <a
+                className="btn btn-primary"
+                href="/popular-polls"
+                role="button"
+              >
+                Popular Polls
+              </a>
+              <a
+                className="btn btn-primary"
+                href="/poll-carousel"
+                role="button"
+              >
+                Fresh Polls
+              </a>
+              <a className="btn btn-primary" href="/my-polls" role="button">
+                My Polls
+              </a>
+              <a className="btn btn-primary" href="/user-profile" role="button">
+                User Profile
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <p>Welcome to the new instant-polls messaging system!</p>
+            <p>Swipe left = Yes</p>
+            <p>Swipe right = No</p>
+            <p>Swipe up = Skip</p>
+            <p>View More = Current Most Popular Polls</p>
+            <div>
+              <a
+                className="btn btn-primary"
+                href="/popular-polls"
+                role="button"
+              >
+                View More
+              </a>
+              <a className="btn btn-primary" href="/signup-page" role="button">
+                Sign Up
+              </a>
+              <a className="btn btn-primary" href="/login-page" role="button">
+                Log In
+              </a>
+            </div>
+          </div>
+        )}
       </section>
     );
   }

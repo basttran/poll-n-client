@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-
 import "./NavBar.css";
-
 import { getLogOut } from "../api.js";
 
 class NavBar extends Component {
@@ -18,9 +16,8 @@ class NavBar extends Component {
     return (
       <section className="NavBar">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <NavLink className="navbar-brand" exact to="/">
-            <img src="pollN-logo-img.png" alt="pollN-logo-img" />
-            <img src="pollN-logo-text.svg" alt="pollN-logo-text" />
+          <NavLink className="navbar-brand polln-title" exact to="/">
+            Poll(n)
           </NavLink>
 
           <button
@@ -34,6 +31,33 @@ class NavBar extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
+              {currentUser ? (
+                <form className="form-inline my-2 my-lg-0">
+                  <NavLink className="nav-link" to="/user-profile">
+                    {currentUser.username}
+                  </NavLink>
+                  <button
+                    className="btn btn-outline-info my-2 my-sm-0"
+                    onClick={() => this.logoutClick()}
+                  >
+                    Log Out
+                  </button>
+                </form>
+              ) : (
+                <div>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/signup-page">
+                      Sign Up
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/login-page">
+                      Log In
+                    </NavLink>
+                  </li>
+                </div>
+              )}
+
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/">
                   Home
@@ -50,12 +74,12 @@ class NavBar extends Component {
                 </NavLink>
               </li>
             </ul>
+
             <form className="form-inline my-2 my-lg-0">
               <input
                 className="form-control mr-sm-2"
                 type="search"
                 placeholder="Search"
-                aria-label="Search"
               />
               <button
                 className="btn btn-outline-success my-2 my-sm-0"
@@ -65,33 +89,6 @@ class NavBar extends Component {
               </button>
             </form>
           </div>
-
-          {currentUser ? (
-            <form className="form-inline my-2 my-lg-0">
-              <NavLink className="nav-link" to="/user-profile">
-                {currentUser.username}
-              </NavLink>
-              <button
-                className="btn btn-outline-info my-2 my-sm-0"
-                onClick={() => this.logoutClick()}
-              >
-                Log Out
-              </button>
-            </form>
-          ) : (
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/signup-page">
-                  Sign Up
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/login-page">
-                  Log In
-                </NavLink>
-              </li>
-            </ul>
-          )}
         </nav>
       </section>
     );

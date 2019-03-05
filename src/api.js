@@ -13,14 +13,11 @@ function errorHandler(err) {
   } else {
     console.log("React Code Error", err.response);
   }
-
-  // alert a generic message for the user
-  //alert("Sorry! Something went wrong. Try again later.");
-
   // cause the error again so the .then() won't be called
   throw err;
 }
 
+// POLL INFORMATION
 export function getPollList() {
   return backendApi.get("/api/polls").catch(errorHandler);
 }
@@ -29,24 +26,15 @@ export function getPollDetails(pollId) {
   return backendApi.get(`/api/polls/${pollId}`).catch(errorHandler);
 }
 
+export function getNextPoll(userId) {
+  return backendApi.get(`/api/next-poll?userId=${userId}`).catch(errorHandler);
+}
+
 export function postPoll(pollSubmission) {
   return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
 }
 
-// export function getArgumentList() {
-//   return backendApi.get("/api/arguments").catch(errorHandler);
-// }
-
-export function getArgumentDetails(argumentId) {
-  return backendApi.get(`/api/arguments/${argumentId}`).catch(errorHandler);
-}
-
-export function postArgument(pollId, argumentSubmission) {
-  return backendApi
-    .post(`/api/arguments/${pollId}/add-argument`, argumentSubmission)
-    .catch(errorHandler);
-}
-
+// AUTHENTIFICATION
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)

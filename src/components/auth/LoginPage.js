@@ -19,7 +19,6 @@ class LoginPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
     postLogIn(this.state).then(response => {
       console.log("Log In", response.data);
       this.props.loginSuccess(response.data);
@@ -28,15 +27,10 @@ class LoginPage extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/browse-polls" />
+      <Redirect to="/poll-carousel" />
     ) : (
       <section className="LoginPage">
         <h4>Log In</h4>
-
-        {this.state.errorMessage && (
-          <div className="error-message">{this.state.errorMessage}</div>
-        )}
-
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -50,7 +44,6 @@ class LoginPage extends Component {
               placeholder="Enter username."
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
@@ -63,7 +56,6 @@ class LoginPage extends Component {
               placeholder="Enter username."
             />
           </div>
-
           <button type="submit" className="btn btn-primary">
             Log In
           </button>

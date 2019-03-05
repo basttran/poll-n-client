@@ -3,19 +3,18 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import HomePage from "./components/HomePage.js";
-import NavBar from "./components/NavBar.js";
+// import NavBar from "./components/NavBar.js";
 import LoginPage from "./components/auth/LoginPage.js";
 import SignupPage from "./components/auth/SignupPage.js";
-import BrowsePolls from "./components/vote/BrowsePolls.js";
+import PollCarousel from "./components/vote/PollCarousel.js";
+import PopularPolls from "./components/vote/PopularPolls.js";
 import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
-import AddArgument from "./components/vote/AddArgument.js";
 import NotFound from "./components/NotFound.js";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // get the initial value of currentUser from localStorage
     let userInfo = localStorage.getItem("currentUser");
     if (userInfo) {
       userInfo = JSON.parse(userInfo);
@@ -39,14 +38,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <NavBar
-            currentUser={this.state.currentUser}
-            logoutConfirmed={() => this.updateUser(null)}
-          />
-        </header>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <HomePage currentUser={this.state.currentUser} />;
+            }}
+          />
           <Route
             path="/signup-page"
             render={() => {
@@ -70,9 +69,24 @@ class App extends Component {
             }}
           />
           <Route path="/add-poll" component={AddPoll} />
-          <Route path="/arguments/:pollId/add-argument" component={AddArgument} />
-          <Route path="/browse-polls" component={BrowsePolls} />
+          <Route
+            path="/poll-carousel"
+            render={() => {
+              return <PollCarousel currentUser={this.state.currentUser} />;
+            }}
+          />
           <Route path="/poll-details/:pollId" component={PollDetails} />
+          <Route
+            path="/popular-polls"
+            render={() => {
+              return (
+                <PopularPolls
+                  currentUser={this.state.currentUser}
+                  logoutSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
           <Route component={NotFound} />
         </Switch>
       </div>

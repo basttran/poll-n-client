@@ -1,0 +1,10 @@
+.PollDetails {
+  margin: 2em auto;
+  height: 100vh;
+}
+
+.PollDetails li {
+  font-size: 0.7em;
+  background-color: rgba(216, 248, 126, 0.1);
+  padding: 10px 20px;
+}

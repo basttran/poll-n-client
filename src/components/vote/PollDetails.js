@@ -1,42 +1,44 @@
 import React, { Component } from "react";
 import "./PollDetails.css";
 import { Link } from "react-router-dom";
-
-import { getPollDetails } from "../../api.js";
-
-function postPollAddress(poll) {
-  return `/arguments/${poll._id}/add-argument`;
-}
+import ReactSwipe from "react-swipe";
 
 class PollDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { pollItem: { arguments: [] } };
-  }
-
-  componentDidMount() {
-    const { params } = this.props.match;
-    getPollDetails(params.pollId).then(response => {
-      console.log("Poll Details", response.data);
-      this.setState({ pollItem: response.data });
-    });
+    this.state = {};
   }
 
   render() {
-    const { pollItem } = this.state;
+    const { pollItem } = this.props;
     return (
       <section className="PollDetails">
-        <h3>{pollItem.shortText}</h3>
-        <p>{pollItem.longText}</p>
-        <img src={pollItem.image} alt={pollItem.shortText} />
-        <ul>
-          {pollItem.arguments.map((argumentItem, index) => {
-            return <li key={index}>{argumentItem.shortText}</li>;
-          })}
-        </ul>
-        <Link className="card-link" to={postPollAddress(pollItem)}>
-          Submit a new Argument
-        </Link>
+        <div className="card bg-secondary">
+          <div className="card-header">
+            <h5 className="card-title">{pollItem.title}</h5>
+          </div>
+          <div className="card-body">
+            <h6 className="card-subtitle mb-2 text-muted">
+              {pollItem.createdAt}
+            </h6>
+            <p className="card-text">{pollItem.description}</p>
+            <h3>
+              YES
+              <i className="fa fa-arrow-left">YES</i>
+            </h3>
+            <h3>
+              <i className="fa fa-spinner fa-spin">NO</i>
+            </h3>
+
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Nb Votants</li>
+              <li className="list-group-item">Nb Verified</li>
+              <li className="list-group-item">Nb Yes</li>
+              <li className="list-group-item">Nb No</li>
+              <li className="list-group-item">Nb Skip</li>
+            </ul>
+          </div>
+        </div>
       </section>
     );
   }
