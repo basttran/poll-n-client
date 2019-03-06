@@ -72,7 +72,12 @@ class App extends Component {
           <Route
             path="/poll-carousel"
             render={() => {
-              return <PollCarousel currentUser={this.state.currentUser} />;
+              return (
+                <PollCarousel
+                  currentUser={this.state.currentUser}
+                  logoutSuccess={user => this.updateUser(user)}
+                />
+              );
             }}
           />
           <Route path="/poll-details/:pollId" component={PollDetails} />

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import ReactSwipe from "react-swipe";
 import "./PollCarousel.css";
 import { getNextPoll } from "../../api.js";
+import NavBar from "../NavBar.js";
 import PollDetails from "./PollDetails.js";
+import Hammer from "hammerjs";
 
 class PollCarousel extends Component {
   constructor(props) {
@@ -20,9 +22,31 @@ class PollCarousel extends Component {
 
   render() {
     const { pollItem } = this.state;
+    // let reactSwipeEl;
+    // var hammertime = new Hammer(document.getElementById("carousel"));
+    // hammertime.on("pan", function(ev) {
+    //   console.log(ev);
+    // });
+
     return (
       <section className="PollCarousel">
-        <PollDetails pollItem={pollItem} />
+        <NavBar currentUser={this.state.currentUser} />
+        <ReactSwipe
+          id="carousel"
+          className="carousel"
+          swipeOptions={{ continuous: false }}
+          // ref={el => (reactSwipeEl = el)}
+        >
+          <div>
+            <PollDetails pollItem={pollItem} />
+          </div>
+          {/* <div>
+            <PollDetails pollItem={pollItem} />
+          </div>
+          <div>
+            <PollDetails pollItem={pollItem} />
+          </div> */}
+        </ReactSwipe>
       </section>
     );
   }

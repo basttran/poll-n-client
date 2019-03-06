@@ -1,11 +1,21 @@
+// FONT AWESOME IMPORT
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+// GOOGLE WEB FONTS
 @import url("https://fonts.googleapis.com/css?family=Cabin+Sketch|Fredericka+the+Great");
 
-$light: rgba(255, 255, 255, 0.2);
+// OVERRIDE FOR SOME BOOTSTRAP VARIABLES
+$light: rgba(255, 255, 255, 0);
 $primary: white;
 $secondary: rgba(20, 154, 70, 0.7);
 
+$navbar-light-color: white;
+$navbar-light-active-color: white;
+
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+// CUSTOM SCSS
 body {
   margin: 0;
   padding: 0;

@@ -8,3 +8,11 @@
   background-color: rgba(216, 248, 126, 0.1);
   padding: 10px 20px;
 }
+
+.PollDetails .arrow-line {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  opacity: 0.5;
+}

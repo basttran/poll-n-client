@@ -15,20 +15,13 @@ class PollDetails extends Component {
       <section className="PollDetails">
         <div className="card bg-secondary">
           <div className="card-header">
-            <h5 className="card-title">{pollItem.title}</h5>
+            <h1 className="card-title">{pollItem.title}</h1>
           </div>
           <div className="card-body">
-            <h6 className="card-subtitle mb-2 text-muted">
+            <h5 className="card-subtitle mb-2 text-muted">
               {pollItem.createdAt}
-            </h6>
-            <p className="card-text">{pollItem.description}</p>
-            <h3>
-              YES
-              <i className="fa fa-arrow-left">YES</i>
-            </h3>
-            <h3>
-              <i className="fa fa-spinner fa-spin">NO</i>
-            </h3>
+            </h5>
+            <h5 className="card-text">{pollItem.description}</h5>
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item">Nb Votants</li>
@@ -37,6 +30,20 @@ class PollDetails extends Component {
               <li className="list-group-item">Nb No</li>
               <li className="list-group-item">Nb Skip</li>
             </ul>
+            <div className="arrow-line">
+              <h5>
+                <i className="fa fa-arrow-left" />
+                YES
+              </h5>
+              <h5>
+                <i className="fa fa-arrow-up" />
+                SKIP
+              </h5>
+              <h5>
+                NO
+                <i className="fa fa-arrow-right" />
+              </h5>
+            </div>
           </div>
         </div>
       </section>
