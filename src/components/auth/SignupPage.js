@@ -11,7 +11,8 @@ class SignupPage extends Component {
       originalPassword: "",
       originalEmail: "",
       originalUsercode: "",
-      errorMessage: ""
+      errorMessage: "",
+      tags: ""
     };
   }
 
@@ -21,6 +22,8 @@ class SignupPage extends Component {
   }
 
   handleSubmit(event) {
+    console.log("TAGS", this.state.tags);
+
     event.preventDefault();
     postSignUp(this.state)
       .then(response => {
@@ -29,7 +32,8 @@ class SignupPage extends Component {
           originalPassword: "",
           originalEmail: "",
           originalUsercode: "",
-          errorMessage: ""
+          errorMessage: "",
+          tags: ""
         });
         console.log("Sign Up Result", response.data);
         this.props.signupSuccess(response.data);
@@ -67,6 +71,22 @@ class SignupPage extends Component {
                 />
                 <small id="usernameHelp" className="form-text text-muted">
                   Make sure this username isn't too easily identifiable.
+                </small>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="tags">Tags</label>
+                <input
+                  onChange={event => this.genericOnChange(event)}
+                  value={this.state.tags}
+                  name="tags"
+                  type="text"
+                  className="form-control"
+                  id="tags"
+                  placeholder="Enter tags."
+                />
+                <small id="tagsHelp" className="form-text text-muted">
+                  Make sure the chosen terms are 'space-separated'.
                 </small>
               </div>
 
