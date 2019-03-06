@@ -47,26 +47,32 @@ class PollDetails extends Component {
               <li className="list-group-item">Nb Skip</li>
             </ul>
             <div className="arrow-line">
+              {/* <Link className="vote-link" to={sendVote(1)}> */}
               <button onClick={() => this.sendVote(1)}>
                 <h5>
                   <i className="fa fa-arrow-left" />
                   YES
                 </h5>
               </button>
+              {/* </Link> */}
 
+              {/* <Link className="vote-link" to="skip-route"> */}
               <button onClick={() => this.sendVote(2)}>
                 <h5>
                   <i className="fa fa-arrow-up" />
                   SKIP
                 </h5>
               </button>
+              {/* </Link> */}
 
+              {/* <Link className="vote-link" to="skip-route"> */}
               <button onClick={() => this.sendVote(0)}>
                 <h5>
                   NO
                   <i className="fa fa-arrow-right" />
                 </h5>
               </button>
+              {/* </Link> */}
             </div>
           </div>
         </div>
