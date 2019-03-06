@@ -38,7 +38,10 @@ class PollCarousel extends Component {
           // ref={el => (reactSwipeEl = el)}
         >
           <div>
-            <PollDetails pollItem={pollItem} />
+            <PollDetails
+              pollItem={pollItem}
+              currentUser={this.state.currentUser}
+            />
           </div>
           {/* <div>
             <PollDetails pollItem={pollItem} />

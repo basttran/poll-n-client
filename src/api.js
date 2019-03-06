@@ -34,6 +34,10 @@ export function postPoll(pollSubmission) {
   return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
 }
 
+export function votePoll(pollSubmission) {
+  return backendApi.post("/api/vote-poll", pollSubmission).catch(errorHandler);
+}
+
 // AUTHENTIFICATION
 export function postSignUp(userSubmission) {
   return backendApi
