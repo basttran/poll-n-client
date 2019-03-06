@@ -2,15 +2,31 @@ import React, { Component } from "react";
 import "./PollDetails.css";
 import { Link } from "react-router-dom";
 import ReactSwipe from "react-swipe";
+import { votePoll } from "../../api.js";
+import { getNextPoll } from "../../api.js";
 
 class PollDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentUser: this.props.currentUser,
+      pollItem: this.props.pollItem,
+      voteValue: ""
+    };
+  }
+
+  sendVote(voteValue) {
+    this.setState({ voteValue: voteValue });
+    votePoll(this.state).then(
+      getNextPoll(this.state.currentUser._id).then(response => {
+        console.log("Next Poll", response.data);
+        this.setState({ pollItem: response.data });
+      })
+    );
   }
 
   render() {
-    const { pollItem } = this.props;
+    const { pollItem } = this.state;
     return (
       <section className="PollDetails">
         <div className="card bg-secondary">
@@ -31,18 +47,26 @@ class PollDetails extends Component {
               <li className="list-group-item">Nb Skip</li>
             </ul>
             <div className="arrow-line">
-              <h5>
-                <i className="fa fa-arrow-left" />
-                YES
-              </h5>
-              <h5>
-                <i className="fa fa-arrow-up" />
-                SKIP
-              </h5>
-              <h5>
-                NO
-                <i className="fa fa-arrow-right" />
-              </h5>
+              <button onClick={() => this.sendVote(1)}>
+                <h5>
+                  <i className="fa fa-arrow-left" />
+                  YES
+                </h5>
+              </button>
+
+              <button onClick={() => this.sendVote(2)}>
+                <h5>
+                  <i className="fa fa-arrow-up" />
+                  SKIP
+                </h5>
+              </button>
+
+              <button onClick={() => this.sendVote(0)}>
+                <h5>
+                  NO
+                  <i className="fa fa-arrow-right" />
+                </h5>
+              </button>
             </div>
           </div>
         </div>
