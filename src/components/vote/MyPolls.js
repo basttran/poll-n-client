@@ -39,11 +39,7 @@ class MyPolls extends Component {
         <div className="card-group">
           {pollCreatedArray.map(onePoll => {
             return (
-              <Link
-                to={getPollAddress(onePoll)}
-                className="card"
-                key={onePoll._id}
-              >
+              <div className="card" key={onePoll._id}>
                 <div className="card-header">
                   <h5>{onePoll.title}</h5>
                 </div>
@@ -59,7 +55,7 @@ class MyPolls extends Component {
                     <p className="card-text">Skip</p>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -67,11 +63,7 @@ class MyPolls extends Component {
         <div className="card-group">
           {pollVotedArray.map(onePoll => {
             return (
-              <Link
-                to={getPollAddress(onePoll)}
-                className="card"
-                key={onePoll._id}
-              >
+              <div className="card" key={onePoll._id}>
                 <div className="card-header">
                   <h5>{onePoll.title}</h5>
                 </div>
@@ -87,7 +79,7 @@ class MyPolls extends Component {
                     <p className="card-text">Skip</p>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>

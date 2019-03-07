@@ -8,8 +8,8 @@ class PollDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: this.props.currentUser,
-      pollItem: this.props.pollItem,
+      currentUser: {},
+      pollItem: {},
       voteValue: ""
     };
   }
