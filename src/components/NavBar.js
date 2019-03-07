@@ -29,6 +29,14 @@ class NavBar extends Component {
             <span className="navbar-toggler-icon" />
           </button>
 
+          {this.props.title ? (
+            <div>
+              <h2>{this.props.title}</h2>
+            </div>
+          ) : (
+            <div />
+          )}
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               {currentUser ? (

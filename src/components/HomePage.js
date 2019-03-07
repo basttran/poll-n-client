@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 class HomePage extends Component {
   render() {
@@ -16,26 +16,30 @@ class HomePage extends Component {
               Welcome <b>{currentUser.username}</b> !
             </h2>
             <div>
-              <a
+              <Link
                 className="btn btn-primary"
                 href="/popular-polls"
                 role="button"
               >
                 Popular Polls
-              </a>
-              <a
+              </Link>
+              <Link
                 className="btn btn-primary"
                 href="/poll-carousel"
                 role="button"
               >
                 Fresh Polls
-              </a>
-              <a className="btn btn-primary" href="/my-polls" role="button">
+              </Link>
+              <Link className="btn btn-primary" href="/my-polls" role="button">
                 My Polls
-              </a>
-              <a className="btn btn-primary" href="/user-profile" role="button">
+              </Link>
+              <Link
+                className="btn btn-primary"
+                href="/user-profile"
+                role="button"
+              >
                 User Profile
-              </a>
+              </Link>
             </div>
           </div>
         ) : (

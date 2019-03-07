@@ -3,7 +3,6 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import HomePage from "./components/HomePage.js";
-// import NavBar from "./components/NavBar.js";
 import LoginPage from "./components/auth/LoginPage.js";
 import SignupPage from "./components/auth/SignupPage.js";
 import PollCarousel from "./components/vote/PollCarousel.js";
@@ -50,12 +49,7 @@ class App extends Component {
           <Route
             path="/user-profile"
             render={() => {
-              return (
-                <ProfilePage
-                  currentUser={this.state.currentUser}
-                  // signupSuccess={user => this.updateUser(user)}
-                />
-              );
+              return <ProfilePage currentUser={this.state.currentUser} />;
             }}
           />
           <Route

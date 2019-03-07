@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./PopularPolls.css";
 import NavBar from "../NavBar.js";
 import { getPollList } from "../../api.js";
+import { Link } from "react-router-dom";
 
 function getPollAddress(poll) {
   return `/poll-details/${poll._id}`;
@@ -23,45 +23,35 @@ class PopularPolls extends Component {
 
   render() {
     const { pollArray } = this.state;
-    const { currentUser } = this.props;
 
     return (
       <section className="PopularPolls">
-        {/* <header>
-          <NavBar
-            currentUser={this.props.currentUser}
-            logoutConfirmed={() => this.updateUser(null)}
-          />
-        </header> */}
-
-        <h2>Popular Polls</h2>
+        <NavBar currentUser={this.props.currentUser} title="Popular Polls" />
 
         <div className="card-group">
           {pollArray.map(onePoll => {
             return (
-              <a
-                href={getPollAddress(onePoll)}
+              <Link
+                to={getPollAddress(onePoll)}
                 className="card"
                 key={onePoll._id}
               >
-                <div className="card-header">{onePoll.shortText}</div>
+                <div className="card-header">
+                  <h5>{onePoll.title}</h5>
+                </div>
                 <div className="card-body">
                   <div className="row">
-                    <p className="card-text">{onePoll.longText}</p>
+                    <h6 className="card-text">{onePoll.description}</h6>
                   </div>
                   <div className="row">
-                    <div className="col-4">
-                      <p className="card-text">Nb Votants</p>
-                      <p className="card-text">Nb Verified</p>
-                    </div>
-                    <div className="col-4">
-                      <p className="card-text">Yes</p>
-                      <p className="card-text">No</p>
-                      <p className="card-text">Skip</p>
-                    </div>
+                    <p className="card-text">Nb Votants</p>
+                    <p className="card-text">Nb Verified</p>
+                    <p className="card-text">Yes</p>
+                    <p className="card-text">No</p>
+                    <p className="card-text">Skip</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>

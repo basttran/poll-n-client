@@ -1,7 +1,15 @@
 .PopularPolls {
+  height: 100vh;
+}
+
+.card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
   width: 80vw;
-  margin: 0 auto;
+  margin: 10px auto;
 }
