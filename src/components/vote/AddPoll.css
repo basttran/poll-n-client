@@ -1,0 +1,8 @@
+.AddPoll {
+  height: 100vh;
+}
+
+.AddPoll form {
+  width: 80vw;
+  margin: 10px auto;
+}

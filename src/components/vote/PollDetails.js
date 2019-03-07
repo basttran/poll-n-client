@@ -14,6 +14,11 @@ class PollDetails extends Component {
     };
   }
 
+  componentDidMount() {
+    const { currentUser, pollItem } = this.props;
+    this.setState({ currentUser, pollItem });
+  }
+
   sendVote(voteValue) {
     this.setState({ voteValue: voteValue });
     votePoll(this.state).then(

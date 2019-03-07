@@ -20,6 +20,14 @@ class NavBar extends Component {
             Poll(n)
           </NavLink>
 
+          {this.props.title ? (
+            <div>
+              <h4>{this.props.title}</h4>
+            </div>
+          ) : (
+            <div />
+          )}
+
           <button
             className="navbar-toggler"
             type="button"
@@ -28,14 +36,6 @@ class NavBar extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-
-          {this.props.title ? (
-            <div>
-              <h4>{this.props.title}</h4>
-            </div>
-          ) : (
-            <div />
-          )}
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">

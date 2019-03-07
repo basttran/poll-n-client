@@ -33,6 +33,9 @@ class HomePage extends Component {
               <Link className="btn btn-primary" to="/my-polls" role="button">
                 My Polls
               </Link>
+              <Link className="btn btn-primary" to="/add-poll" role="button">
+                Add Poll
+              </Link>
               <Link
                 className="btn btn-primary"
                 to="/user-profile"

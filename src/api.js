@@ -22,6 +22,18 @@ export function getPollList() {
   return backendApi.get("/api/polls").catch(errorHandler);
 }
 
+export function getPollListCreatedByUser(userId) {
+  return backendApi
+    .get(`/api/polls-created?userId=${userId}`)
+    .catch(errorHandler);
+}
+
+export function getPollListVotedByUser(userId) {
+  return backendApi
+    .get(`/api/polls-voted?userId=${userId}`)
+    .catch(errorHandler);
+}
+
 export function getPollDetails(pollId) {
   return backendApi.get(`/api/polls/${pollId}`).catch(errorHandler);
 }

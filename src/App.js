@@ -11,6 +11,7 @@ import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
 import NotFound from "./components/NotFound.js";
 import ProfilePage from "./components/auth/ProfilePage.js";
+import MyPolls from "./components/vote/MyPolls.js";
 
 class App extends Component {
   constructor(props) {
@@ -47,12 +48,6 @@ class App extends Component {
             }}
           />
           <Route
-            path="/user-profile"
-            render={() => {
-              return <ProfilePage currentUser={this.state.currentUser} />;
-            }}
-          />
-          <Route
             path="/signup-page"
             render={() => {
               return (
@@ -74,7 +69,18 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/add-poll" component={AddPoll} />
+          <Route
+            path="/user-profile"
+            render={() => {
+              return <ProfilePage currentUser={this.state.currentUser} />;
+            }}
+          />
+          <Route
+            path="/add-poll"
+            render={() => {
+              return <AddPoll currentUser={this.state.currentUser} />;
+            }}
+          />
           <Route
             path="/poll-carousel"
             render={() => {
@@ -92,6 +98,17 @@ class App extends Component {
             render={() => {
               return (
                 <PopularPolls
+                  currentUser={this.state.currentUser}
+                  logoutSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/my-polls"
+            render={() => {
+              return (
+                <MyPolls
                   currentUser={this.state.currentUser}
                   logoutSuccess={user => this.updateUser(user)}
                 />

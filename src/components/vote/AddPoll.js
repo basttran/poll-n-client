@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import "./AddPoll.css";
+import NavBar from "../NavBar.js";
 import { postPoll } from "../../api.js";
 import { Redirect } from "react-router-dom";
-// not sure we are currently redirecting | needs to be checked
 
 class AddPoll extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shortText: "",
-      longText: "",
-      image: "",
-      isSubmitSuccessful: false
+      title: "",
+      description: "",
+      isSubmitSuccessful: false,
+      currentUser: this.props.currentUser
     };
   }
 
@@ -22,25 +22,27 @@ class AddPoll extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("about to postPoll()", event);
+    console.log("About to postPoll()", event);
     postPoll(this.state).then(response => {
-      console.log("Add Poll", response.data);
+      console.log("Poll added", response.data);
       this.setState({ isSubmitSuccessful: true });
     });
   }
 
   render() {
     return this.state.isSubmitSuccessful ? (
-      <Redirect to="/browse-polls" />
+      <Redirect to="/my-polls" />
     ) : (
       <section className="AddPoll">
+        <NavBar currentUser={this.props.currentUser} title="Add Poll" />
+
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">
             <label htmlFor="pollTitle">Title</label>
             <input
               onChange={event => this.genericOnChange(event)}
-              value={this.state.shortText}
-              name="shortText"
+              value={this.state.title}
+              name="title"
               type="text"
               className="form-control"
               id="pollTitle"
@@ -51,26 +53,15 @@ class AddPoll extends Component {
             <label htmlFor="pollDesc">Description</label>
             <input
               onChange={event => this.genericOnChange(event)}
-              value={this.state.longText}
-              name="longText"
+              value={this.state.description}
+              name="description"
               type="text"
               className="form-control"
               id="pollDesc"
               placeholder="Enter description."
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="pollImage">Image URL</label>
-            <input
-              onChange={event => this.genericOnChange(event)}
-              value={this.state.image}
-              name="image"
-              type="url"
-              className="form-control"
-              id="pollImage"
-              placeholder="Enter Image URL."
-            />
-          </div>
+
           <button type="submit" className="btn btn-info">
             Submit This Poll
           </button>
