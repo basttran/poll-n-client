@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./PollDetails.css";
 import { Link } from "react-router-dom";
-import ReactSwipe from "react-swipe";
 import { votePoll } from "../../api.js";
 import { getNextPoll } from "../../api.js";
 
@@ -26,7 +25,7 @@ class PollDetails extends Component {
   }
 
   render() {
-    const { pollItem } = this.state;
+    const { pollItem } = this.props;
     return (
       <section className="PollDetails">
         <div className="card bg-secondary">

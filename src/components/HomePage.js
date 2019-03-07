@@ -18,24 +18,24 @@ class HomePage extends Component {
             <div>
               <Link
                 className="btn btn-primary"
-                href="/popular-polls"
+                to="/popular-polls"
                 role="button"
               >
                 Popular Polls
               </Link>
               <Link
                 className="btn btn-primary"
-                href="/poll-carousel"
+                to="/poll-carousel"
                 role="button"
               >
                 Fresh Polls
               </Link>
-              <Link className="btn btn-primary" href="/my-polls" role="button">
+              <Link className="btn btn-primary" to="/my-polls" role="button">
                 My Polls
               </Link>
               <Link
                 className="btn btn-primary"
-                href="/user-profile"
+                to="/user-profile"
                 role="button"
               >
                 User Profile
@@ -50,19 +50,19 @@ class HomePage extends Component {
             <p>Swipe up = Skip</p>
             <p>View More = Current Most Popular Polls</p>
             <div>
-              <a
+              <Link
                 className="btn btn-primary"
-                href="/popular-polls"
+                to="/popular-polls"
                 role="button"
               >
                 View More
-              </a>
-              <a className="btn btn-primary" href="/signup-page" role="button">
+              </Link>
+              <Link className="btn btn-primary" to="/signup-page" role="button">
                 Sign Up
-              </a>
-              <a className="btn btn-primary" href="/login-page" role="button">
+              </Link>
+              <Link className="btn btn-primary" to="/login-page" role="button">
                 Log In
-              </a>
+              </Link>
             </div>
           </div>
         )}
