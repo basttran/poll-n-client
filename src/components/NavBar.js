@@ -31,7 +31,7 @@ class NavBar extends Component {
 
           {this.props.title ? (
             <div>
-              <h2>{this.props.title}</h2>
+              <h4>{this.props.title}</h4>
             </div>
           ) : (
             <div />

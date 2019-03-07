@@ -1,0 +1,21 @@
+.ProfilePage {
+  height: 100vh;
+}
+
+.user-info {
+  width: 90vw;
+  margin: 20px auto;
+}
+
+.user-info ul {
+  margin: 10px 20px;
+}
+
+.user-info img {
+  height: 80px;
+  width: 80px;
+}
+
+.tag-list {
+  margin: 10px 20px;
+}
