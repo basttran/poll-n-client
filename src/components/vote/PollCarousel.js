@@ -48,7 +48,11 @@ class PollCarousel extends Component {
 
     return (
       <section className="PollCarousel">
-        <NavBar currentUser={this.state.currentUser} title="Fresh Polls" />
+        <NavBar
+          currentUser={this.state.currentUser}
+          title="Fresh Polls"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
         <ReactSwipe
           id="carousel"
           className="carousel"

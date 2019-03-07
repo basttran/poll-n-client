@@ -78,7 +78,12 @@ class App extends Component {
           <Route
             path="/add-poll"
             render={() => {
-              return <AddPoll currentUser={this.state.currentUser} />;
+              return (
+                <AddPoll
+                  currentUser={this.state.currentUser}
+                  logoutConfirmed={user => this.updateUser(user)}
+                />
+              );
             }}
           />
           <Route
@@ -87,7 +92,7 @@ class App extends Component {
               return (
                 <PollCarousel
                   currentUser={this.state.currentUser}
-                  logoutSuccess={user => this.updateUser(user)}
+                  logoutConfirmed={user => this.updateUser(user)}
                 />
               );
             }}
@@ -99,7 +104,7 @@ class App extends Component {
               return (
                 <PopularPolls
                   currentUser={this.state.currentUser}
-                  logoutSuccess={user => this.updateUser(user)}
+                  logoutConfirmed={user => this.updateUser(user)}
                 />
               );
             }}
@@ -110,7 +115,7 @@ class App extends Component {
               return (
                 <MyPolls
                   currentUser={this.state.currentUser}
-                  logoutSuccess={user => this.updateUser(user)}
+                  logoutConfirmed={user => this.updateUser(user)}
                 />
               );
             }}

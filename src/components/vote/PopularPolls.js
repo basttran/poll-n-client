@@ -26,7 +26,11 @@ class PopularPolls extends Component {
 
     return (
       <section className="PopularPolls">
-        <NavBar currentUser={this.props.currentUser} title="Popular Polls" />
+        <NavBar
+          currentUser={this.props.currentUser}
+          title="Popular Polls"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
 
         <div className="card-group">
           {pollArray.map(onePoll => {

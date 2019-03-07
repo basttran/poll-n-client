@@ -34,7 +34,11 @@ class AddPoll extends Component {
       <Redirect to="/my-polls" />
     ) : (
       <section className="AddPoll">
-        <NavBar currentUser={this.props.currentUser} title="Add Poll" />
+        <NavBar
+          currentUser={this.props.currentUser}
+          title="Add Poll"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
 
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">

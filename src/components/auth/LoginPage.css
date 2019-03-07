@@ -1,0 +1,8 @@
+.LoginPage {
+  height: 100vh;
+}
+
+.LoginPage form {
+  width: 80vw;
+  margin: 20px auto;
+}

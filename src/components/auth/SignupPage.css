@@ -1,3 +1,8 @@
-.error-message {
-  color: red;
+.SignupPage {
+  height: 100vh;
+}
+
+.SignupPage form {
+  width: 80vw;
+  margin: 20px auto;
 }

@@ -34,7 +34,11 @@ class MyPolls extends Component {
 
     return (
       <section className="MyPolls">
-        <NavBar currentUser={this.props.currentUser} title="My Polls" />
+        <NavBar
+          currentUser={this.props.currentUser}
+          title="My Polls"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
         <p>Polls I've Created</p>
         <div className="card-group">
           {pollCreatedArray.map(onePoll => {

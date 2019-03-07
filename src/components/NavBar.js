@@ -4,7 +4,8 @@ import "./NavBar.css";
 import { getLogOut } from "../api.js";
 
 class NavBar extends Component {
-  logoutClick() {
+  logoutClick(event) {
+    event.preventDefault();
     getLogOut().then(response => {
       console.log("Log Out OK", response.data);
       this.props.logoutConfirmed();
@@ -20,13 +21,15 @@ class NavBar extends Component {
             Poll(n)
           </NavLink>
 
-          {this.props.title ? (
-            <div>
-              <h4>{this.props.title}</h4>
-            </div>
-          ) : (
-            <div />
-          )}
+          <div id="title">
+            {this.props.title ? (
+              <div>
+                <h4>{this.props.title}</h4>
+              </div>
+            ) : (
+              <div />
+            )}
+          </div>
 
           <button
             className="navbar-toggler"
@@ -39,63 +42,51 @@ class NavBar extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              {currentUser ? (
-                <form className="form-inline my-2 my-lg-0">
-                  <NavLink className="nav-link" to="/user-profile">
-                    {currentUser.username}
-                  </NavLink>
-                  <button
-                    className="btn btn-outline-info my-2 my-sm-0"
-                    onClick={() => this.logoutClick()}
-                  >
-                    Log Out
-                  </button>
-                </form>
-              ) : (
-                <div>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/signup-page">
-                      Sign Up
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/login-page">
-                      Log In
-                    </NavLink>
-                  </li>
-                </div>
-              )}
-
               <li className="nav-item">
-                <NavLink className="nav-link" exact to="/">
-                  Home
+                <NavLink className="nav-link" to="/popular-polls">
+                  Popular Polls
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/browse-polls">
-                  Browse
+                <NavLink className="nav-link" to="/poll-carousel">
+                  Fresh Polls
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" exact to="/add-poll">
-                  Create
+                <NavLink className="nav-link" to="/add-poll">
+                  Add Poll
                 </NavLink>
+              </li>
+              <li>
+                {currentUser ? (
+                  <form className="form-inline my-2 my-lg-0">
+                    <NavLink className="nav-link" to="/user-profile">
+                      Username:
+                      <b> {currentUser.username}</b>
+                    </NavLink>
+                    <button
+                      className="btn btn-outline-info my-2 my-sm-0"
+                      onClick={event => this.logoutClick(event)}
+                    >
+                      Log Out
+                    </button>
+                  </form>
+                ) : (
+                  <div>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/signup-page">
+                        Sign Up
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/login-page">
+                        Log In
+                      </NavLink>
+                    </li>
+                  </div>
+                )}
               </li>
             </ul>
-
-            <form className="form-inline my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-              />
-              <button
-                className="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
           </div>
         </nav>
       </section>

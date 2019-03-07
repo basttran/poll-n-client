@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./LoginPage.css";
 import { postLogIn } from "../../api.js";
+import NavBar from "../NavBar.js";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -30,7 +31,11 @@ class LoginPage extends Component {
       <Redirect to="/poll-carousel" />
     ) : (
       <section className="LoginPage">
-        <h4>Log In</h4>
+        <NavBar
+          currentUser={this.state.currentUser}
+          title="Log In"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
