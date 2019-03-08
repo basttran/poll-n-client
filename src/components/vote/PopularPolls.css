@@ -1,5 +1,7 @@
 .PopularPolls {
   height: 100vh;
+  overflow: scroll;
+  margin: 2em auto;
 }
 
 .card-group {

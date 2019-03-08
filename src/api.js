@@ -42,16 +42,18 @@ export function getNextPoll(userId) {
   return backendApi.get(`/api/next-poll?userId=${userId}`).catch(errorHandler);
 }
 
-export function getNewPoll(userId) {
-  return backendApi.get(`/api/new-poll`, userId).catch(errorHandler);
-}
-
 export function postPoll(pollSubmission) {
   return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
 }
 
-export function votePoll(swipeState) {
-  return backendApi.post("/api/vote-poll", swipeState).catch(errorHandler);
+export function votePoll(voteSubmission) {
+  return backendApi.post("/api/vote-poll", voteSubmission).catch(errorHandler);
+}
+
+export function getNbYes(pollId) {
+  return backendApi
+    .get(`/api/get-count-yes?pollId=${pollId}`)
+    .catch(errorHandler);
 }
 
 // AUTHENTIFICATION

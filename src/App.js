@@ -9,7 +9,6 @@ import PollCarousel from "./components/vote/PollCarousel.js";
 import PopularPolls from "./components/vote/PopularPolls.js";
 import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
-import PollSwiper from "./components/vote/PollSwiper.js";
 import NotFound from "./components/NotFound.js";
 import ProfilePage from "./components/auth/ProfilePage.js";
 import MyPolls from "./components/vote/MyPolls.js";
@@ -92,17 +91,6 @@ class App extends Component {
             render={() => {
               return (
                 <PollCarousel
-                  currentUser={this.state.currentUser}
-                  logoutConfirmed={user => this.updateUser(user)}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/poll-swiper"
-            render={() => {
-              return (
-                <PollSwiper
                   currentUser={this.state.currentUser}
                   logoutConfirmed={user => this.updateUser(user)}
                 />

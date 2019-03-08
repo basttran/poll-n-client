@@ -1,36 +1,38 @@
 import React, { Component } from "react";
 import "./PollDetails.css";
 import { votePoll } from "../../api.js";
-import { getNextPoll } from "../../api.js";
+import { Redirect } from "react-router-dom";
 
 class PollDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {},
-      pollItem: {},
-      voteValue: ""
+      voteValue: "",
+      noPollsAvailable: false
     };
   }
 
-  componentDidMount() {
-    const { currentUser, pollItem } = this.props;
-    this.setState({ currentUser, pollItem });
-  }
-
   sendVote(voteValue) {
-    this.setState({ voteValue: voteValue });
-    votePoll(this.state).then(
-      getNextPoll(this.state.currentUser._id).then(response => {
-        console.log("Next Poll", response.data);
-        this.setState({ pollItem: response.data });
+    const { currentUser, pollItem, reloadPollDetails } = this.props;
+    this.setState({ voteValue });
+    let voteSubmission = { currentUser, pollItem, voteValue };
+    votePoll(voteSubmission).then(() =>
+      reloadPollDetails().then(response => {
+        if (response.data === "NO POLLS AVAILABLE") {
+          console.log("No Poll Available, will redirect to My Polls now.");
+          this.setState({ noPollsAvailable: true });
+        }
+        console.log("Reloaded Poll Details", response.data);
       })
     );
   }
 
   render() {
     const { pollItem } = this.props;
-    return (
+    const { noPollsAvailable } = this.state;
+    return noPollsAvailable ? (
+      <Redirect to="my-polls" errormsg="No more polls available at the moment. Feel free to add more."  />
+    ) : (
       <section className="PollDetails">
         <div className="card bg-secondary">
           <div className="card-header">
@@ -50,32 +52,26 @@ class PollDetails extends Component {
               <li className="list-group-item">Nb Skip</li>
             </ul>
             <div className="arrow-line">
-              {/* <Link className="vote-link" to={sendVote(1)}> */}
               <button onClick={() => this.sendVote(1)}>
                 <h5>
                   <i className="fa fa-arrow-left" />
                   YES
                 </h5>
               </button>
-              {/* </Link> */}
 
-              {/* <Link className="vote-link" to="skip-route"> */}
               <button onClick={() => this.sendVote(2)}>
                 <h5>
                   <i className="fa fa-reply-all" />
                   SKIP
                 </h5>
               </button>
-              {/* </Link> */}
 
-              {/* <Link className="vote-link" to="skip-route"> */}
               <button onClick={() => this.sendVote(0)}>
                 <h5>
                   NO
                   <i className="fa fa-arrow-right" />
                 </h5>
               </button>
-              {/* </Link> */}
             </div>
           </div>
         </div>

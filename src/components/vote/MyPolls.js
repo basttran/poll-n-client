@@ -4,6 +4,8 @@ import NavBar from "../NavBar.js";
 import { getPollListCreatedByUser } from "../../api.js";
 import { getPollListVotedByUser } from "../../api.js";
 
+import { getNbYes } from "../../api.js";
+
 class MyPolls extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +36,15 @@ class MyPolls extends Component {
           title="My Polls"
           logoutConfirmed={user => this.props.logoutConfirmed(user)}
         />
+
+        {this.props.errormsg ? (
+          <div>
+            <h4>{this.props.errormsg}</h4>
+          </div>
+        ) : (
+          <div />
+        )}
+
         <p>Polls I've Created</p>
         <div className="card-group">
           {pollCreatedArray.map(onePoll => {
@@ -43,16 +54,20 @@ class MyPolls extends Component {
                   <h5>{onePoll.title}</h5>
                 </div>
                 <div className="card-body">
-                  <div className="row">
+                  <div>
                     <h6 className="card-text">{onePoll.description}</h6>
                   </div>
-                  <div className="row">
-                    <p className="card-text">Nb Votants</p>
-                    <p className="card-text">Nb Verified</p>
-                    <p className="card-text">Yes</p>
-                    <p className="card-text">No</p>
-                    <p className="card-text">Skip</p>
-                  </div>
+                  <ul>
+                    <li className="card-text">
+                      <b>{onePoll.votes.length}</b> Voters
+                    </li>
+                    <li className="card-text">
+                      <b>0</b> Verified
+                    </li>
+                    <li className="card-text">Yes</li>
+                    <li className="card-text">No</li>
+                    <li className="card-text">Skip</li>
+                  </ul>
                 </div>
               </div>
             );
@@ -67,16 +82,20 @@ class MyPolls extends Component {
                   <h5>{onePoll.title}</h5>
                 </div>
                 <div className="card-body">
-                  <div className="row">
+                  <div>
                     <h6 className="card-text">{onePoll.description}</h6>
                   </div>
-                  <div className="row">
-                    <p className="card-text">Nb Votants</p>
-                    <p className="card-text">Nb Verified</p>
-                    <p className="card-text">Yes</p>
-                    <p className="card-text">No</p>
-                    <p className="card-text">Skip</p>
-                  </div>
+                  <ul>
+                    <li className="card-text">
+                      <b>{onePoll.votes.length}</b> Voters
+                    </li>
+                    <li className="card-text">
+                      <b>0</b> Verified
+                    </li>
+                    {/* <li className="card-text">{getNbYes(onePoll._id)} Yes</li> */}
+                    <li className="card-text">No</li>
+                    <li className="card-text">Skip</li>
+                  </ul>
                 </div>
               </div>
             );

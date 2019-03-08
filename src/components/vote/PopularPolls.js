@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import "./PopularPolls.css";
 import NavBar from "../NavBar.js";
 import { getPollList } from "../../api.js";
-import { Link } from "react-router-dom";
-
-function getPollAddress(poll) {
-  return `/poll-details/${poll._id}`;
-}
 
 class PopularPolls extends Component {
   constructor(props) {

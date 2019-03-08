@@ -6,17 +6,27 @@ import { getNextPoll } from "../../api.js";
 import NavBar from "../NavBar.js";
 import PollDetails from "./PollDetails.js";
 import Hammer from "hammerjs";
+import { Redirect } from "react-router-dom";
 
 class PollCarousel extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentUser: this.props.currentUser, pollItem: {} };
+    this.state = {
+      currentUser: this.props.currentUser,
+      pollItem: "YOYOYOY",
+      noPollsAvailable: false
+    };
   }
 
   componentDidMount() {
     const { currentUser } = this.state;
 
     getNextPoll(currentUser._id).then(response => {
+      if (response.data === "NO POLLS AVAILABLE") {
+        console.log("No Poll Available, will redirect to My Polls now.");
+        this.setState({ noPollsAvailable: true });
+      }
+
       console.log("Next Poll", response.data);
       this.setState({ pollItem: response.data });
     });
@@ -44,9 +54,11 @@ class PollCarousel extends Component {
   }
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser, noPollsAvailable } = this.state;
 
-    return (
+    return noPollsAvailable ? (
+      <Redirect to="my-polls" errormsg="No more polls available at the moment. Feel free to add more."  />
+    ) : (
       <section className="PollCarousel">
         <NavBar
           currentUser={this.state.currentUser}
@@ -83,6 +95,7 @@ class PollCarousel extends Component {
             <PollDetails
               pollItem={this.state.pollItem}
               currentUser={this.state.currentUser}
+              reloadPollDetails={() => getNextPoll(currentUser._id)}
             />
           </div>
         </ReactSwipe>
