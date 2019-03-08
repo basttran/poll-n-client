@@ -31,7 +31,10 @@ class PollDetails extends Component {
     const { pollItem } = this.props;
     const { noPollsAvailable } = this.state;
     return noPollsAvailable ? (
-      <Redirect to="my-polls" errormsg="No more polls available at the moment. Feel free to add more."  />
+      <Redirect
+        to="my-polls"
+        errormsg="No more polls available at the moment. Feel free to add more."
+      />
     ) : (
       <section className="PollDetails">
         <div className="card bg-secondary">

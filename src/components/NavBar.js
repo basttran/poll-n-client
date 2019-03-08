@@ -4,11 +4,17 @@ import "./NavBar.css";
 import { getLogOut } from "../api.js";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   logoutClick(event) {
+    const { logoutConfirmed } = this.props;
     event.preventDefault();
     getLogOut().then(response => {
       console.log("Log Out OK", response.data);
-      this.props.logoutConfirmed();
+      logoutConfirmed();
     });
   }
 

@@ -5,13 +5,16 @@ import NavBar from "../NavBar.js";
 
 class ProfilePage extends Component {
   render() {
-    const { currentUser } = this.props;
-    console.log("COUCOU", currentUser);
+    const { currentUser, logoutConfirmed } = this.props;
     return !currentUser ? (
       <Redirect to="/" />
     ) : (
       <section className="ProfilePage">
-        <NavBar currentUser={this.props.currentUser} title="Profile Page" />
+        <NavBar
+          currentUser={currentUser}
+          title="Profile Page"
+          logoutConfirmed={user => logoutConfirmed(user)}
+        />
         <div className="user-info">
           <div className="row">
             <div className="col-4">

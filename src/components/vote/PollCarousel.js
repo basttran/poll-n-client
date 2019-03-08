@@ -12,14 +12,14 @@ class PollCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: this.props.currentUser,
-      pollItem: "YOYOYOY",
+      currentUser: {},
+      pollItem: {},
       noPollsAvailable: false
     };
   }
 
   componentDidMount() {
-    const { currentUser } = this.state;
+    const { currentUser } = this.props;
 
     getNextPoll(currentUser._id).then(response => {
       if (response.data === "NO POLLS AVAILABLE") {
@@ -36,16 +36,23 @@ class PollCarousel extends Component {
 
     // SWIPE INPUT (ONLY LEFT OR RIGHT), UNUSED AT THE MOMENT SINCE REACT-SWIPE ALREADY HANDLES THESE INPUTS
     // I'M LEAVING THOSE HERE JUST IN CASE WE NEED IT IN THE FUTURE (ALL THEY DO IS CONSOLE.LOG)
-    touchHandler.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
-    touchHandler.on("swipe", function(ev) {
-      console.log(ev);
-    });
+    // touchHandler.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
+    // touchHandler.on("swipe", function(ev) {
+    //   console.log(ev);
+    // });
 
     // ON DOUBLE TAP, WILL VOTE "2" TO CURRENT POLL & CALL FOR NEXT POLL TO LOAD
     touchHandler.on("doubletap", function() {
-      // I'M NOT SURE HOW THIS SHOULD BE CORRECTLY WRITTEN -> basically, what i want is to call the api saying "here's the vote value from this user to this poll" & next call the nex-poll api route to retrieve a new poll to display
-      votePoll(2).then(
+      const { currentUser } = this.props;
+      const { pollItem } = this.state;
+      let voteValue = 2;
+      let voteSubmission = { currentUser, pollItem, voteValue };
+      votePoll(voteSubmission).then(
         getNextPoll(currentUser._id).then(response => {
+          if (response.data === "NO POLLS AVAILABLE") {
+            console.log("No Poll Available, will redirect to My Polls now.");
+            this.setState({ noPollsAvailable: true });
+          }
           console.log("Next Poll", response.data);
           this.setState({ pollItem: response.data });
         })
@@ -54,16 +61,20 @@ class PollCarousel extends Component {
   }
 
   render() {
-    const { currentUser, noPollsAvailable } = this.state;
+    const { currentUser, logoutConfirmed } = this.props;
+    const { pollItem, noPollsAvailable } = this.state;
 
     return noPollsAvailable ? (
-      <Redirect to="my-polls" errormsg="No more polls available at the moment. Feel free to add more."  />
+      <Redirect
+        to="my-polls"
+        errormsg="No more polls available at the moment. Feel free to add more."
+      />
     ) : (
       <section className="PollCarousel">
         <NavBar
-          currentUser={this.state.currentUser}
+          currentUser={currentUser}
           title="Fresh Polls"
-          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+          logoutConfirmed={user => logoutConfirmed(user)}
         />
         <ReactSwipe
           id="carousel"
@@ -73,16 +84,32 @@ class PollCarousel extends Component {
             swiping: function(ev) {
               console.log(ev);
               if (ev > 0.25) {
-                votePoll(1).then(
+                let voteValue = 1;
+                let voteSubmission = { currentUser, pollItem, voteValue };
+                votePoll(voteSubmission).then(
                   getNextPoll(currentUser._id).then(response => {
+                    if (response.data === "NO POLLS AVAILABLE") {
+                      console.log(
+                        "No Poll Available, will redirect to My Polls now."
+                      );
+                      this.setState({ noPollsAvailable: true });
+                    }
                     console.log("Next Poll", response.data);
                     this.setState({ pollItem: response.data });
                   })
                 );
               }
               if (ev < -0.25) {
-                votePoll(0).then(
+                let voteValue = 0;
+                let voteSubmission = { currentUser, pollItem, voteValue };
+                votePoll(voteSubmission).then(
                   getNextPoll(currentUser._id).then(response => {
+                    if (response.data === "NO POLLS AVAILABLE") {
+                      console.log(
+                        "No Poll Available, will redirect to My Polls now."
+                      );
+                      this.setState({ noPollsAvailable: true });
+                    }
                     console.log("Next Poll", response.data);
                     this.setState({ pollItem: response.data });
                   })
@@ -93,8 +120,8 @@ class PollCarousel extends Component {
         >
           <div>
             <PollDetails
-              pollItem={this.state.pollItem}
-              currentUser={this.state.currentUser}
+              pollItem={pollItem}
+              currentUser={currentUser}
               reloadPollDetails={() => getNextPoll(currentUser._id)}
             />
           </div>
