@@ -16,7 +16,7 @@ class HomePage extends Component {
               Welcome <b>{currentUser.username}</b> !
             </h2>
             <div>
-              <Link
+              {/* <Link
                 className="btn btn-primary"
                 to="/popular-polls"
                 role="button"
@@ -29,6 +29,13 @@ class HomePage extends Component {
                 role="button"
               >
                 Fresh Polls
+              </Link> */}
+              <Link
+                className="btn btn-primary"
+                to="/poll-swiper"
+                role="button"
+              >
+                Poll Swiper
               </Link>
               <Link className="btn btn-primary" to="/my-polls" role="button">
                 My Polls
