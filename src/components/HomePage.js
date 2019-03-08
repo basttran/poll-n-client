@@ -30,6 +30,13 @@ class HomePage extends Component {
               >
                 Fresh Polls
               </Link>
+              <Link
+                className="btn btn-primary"
+                to="/poll-swiper"
+                role="button"
+              >
+                Poll Swiper
+              </Link>
               <Link className="btn btn-primary" to="/my-polls" role="button">
                 My Polls
               </Link>
