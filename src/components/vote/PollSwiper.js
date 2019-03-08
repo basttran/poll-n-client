@@ -15,28 +15,20 @@ class PollSwiper extends Component {
   }
 
   componentDidMount() {
-    console.log("DID MOUNT", this.state);
-    getNewPoll(this.state.currentUser).then(response => {
-      console.log("RES", response.data);
-      this.setState({ pollItem: response.data });
-    });
-    console.log("DONE MOUNT", this.state);
 
-    // console.log(this.state.currentUser.votes);
   }
 
   sendVote(voteValue) {
-    const { currentUser } = this.state;
-
     this.setState({ "voteValue": voteValue });
-    // console.log(voteValue);
-    votePoll(this.state)
-      .then(
-        getNewPoll(currentUser).then(response => {
-          console.log("New Poll", response.data);
-          this.setState({ pollItem: response.data });
-        })
-      );
+    console.log(voteValue);
+    console.log(this.state);
+
+      // .then(
+      //   getNewPoll(currentUser).then(response => {
+      //     console.log("New Poll", response.data);
+      //     this.setState({ pollItem: response.data });
+      //   })
+      // );
     
     // votePoll(this.state).then(
     //   getNextPoll(this.state.currentUser._id).then(response => {
@@ -47,10 +39,7 @@ class PollSwiper extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { pollItem } = this.state;
-    console.log("RENDER", pollItem);
-    // console.log("STATE", this.state);
     return (
         <section className="PollSwiper">
         <span>{pollItem.title}</span>

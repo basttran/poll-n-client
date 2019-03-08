@@ -11,7 +11,7 @@ import AddPoll from "./components/vote/AddPoll.js";
 import PollDetails from "./components/vote/PollDetails.js";
 import PollSwiper from "./components/vote/PollSwiper.js";
 import NotFound from "./components/NotFound.js";
-// import ProfilePage from "./components/auth/ProfilePage.js";
+import ProfilePage from "./components/auth/ProfilePage.js";
 import MyPolls from "./components/vote/MyPolls.js";
 
 class App extends Component {
@@ -70,12 +70,12 @@ class App extends Component {
               );
             }}
           />
-          {/* <Route
+          <Route
             path="/user-profile"
             render={() => {
               return <ProfilePage currentUser={this.state.currentUser} />;
             }}
-          /> */}
+          />
           <Route
             path="/add-poll"
             render={() => {
@@ -87,7 +87,7 @@ class App extends Component {
               );
             }}
           />
-          {/* <Route
+          <Route
             path="/poll-carousel"
             render={() => {
               return (
@@ -97,7 +97,7 @@ class App extends Component {
                 />
               );
             }}
-          /> */}
+          />
           <Route
             path="/poll-swiper"
             render={() => {
@@ -110,7 +110,7 @@ class App extends Component {
             }}
           />
           <Route path="/poll-details/:pollId" component={PollDetails} />
-          {/* <Route
+          <Route
             path="/popular-polls"
             render={() => {
               return (
@@ -120,7 +120,7 @@ class App extends Component {
                 />
               );
             }}
-          /> */}
+          />
           <Route
             path="/my-polls"
             render={() => {
