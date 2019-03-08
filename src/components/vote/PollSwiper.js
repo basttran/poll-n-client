@@ -15,13 +15,23 @@ class PollSwiper extends Component {
   }
 
   componentDidMount() {
-
+    getNewPoll(this.props.currentUser).then(response => {
+      console.log("First Poll", response.data);
+      this.setState({ pollItem: response.data });
+    })
   }
 
   sendVote(voteValue) {
+
     this.setState({ "voteValue": voteValue });
-    console.log(voteValue);
-    console.log(this.state);
+    votePoll(this.state);
+    getNewPoll(this.state.currentUser).then(response => {
+      console.log("New Poll", response.data);
+      this.setState({ pollItem: response.data });
+    })
+
+    // console.log(voteValue);
+    // console.log(this.state);
 
       // .then(
       //   getNewPoll(currentUser).then(response => {
