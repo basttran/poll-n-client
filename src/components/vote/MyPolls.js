@@ -3,11 +3,6 @@ import "./MyPolls.css";
 import NavBar from "../NavBar.js";
 import { getPollListCreatedByUser } from "../../api.js";
 import { getPollListVotedByUser } from "../../api.js";
-import { Link } from "react-router-dom";
-
-function getPollAddress(poll) {
-  return `/poll-details/${poll._id}`;
-}
 
 class MyPolls extends Component {
   constructor(props) {

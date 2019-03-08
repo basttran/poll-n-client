@@ -9,7 +9,31 @@
   align-items: center;
 }
 
+.card-group a {
+  text-decoration: none;
+}
+
 .card {
   width: 80vw;
-  margin: 10px auto;
+  margin-top: 2em;
+}
+
+.card-header {
+  padding: 10px 10px 0 10px;
+}
+
+.card-body {
+  padding: 10px 10px;
+}
+
+.card-body ul {
+  list-style-type: none;
+  font-weight: bold;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 10px 0;
+  padding-left: 0;
+  padding-right: 2em;
 }

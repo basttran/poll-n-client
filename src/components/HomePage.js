@@ -48,17 +48,20 @@ class HomePage extends Component {
         ) : (
           <div>
             <p>Welcome to the new instant-polls messaging system!</p>
-            <p>Swipe left = Yes</p>
-            <p>Swipe right = No</p>
-            <p>Swipe up = Skip</p>
-            <p>View More = Current Most Popular Polls</p>
+            <p>
+              Swipe <i className="fa fa-arrow-left" /> to vote YES
+            </p>
+            <p>
+              Swipe <i className="fa fa-arrow-right" /> to vote NO
+            </p>
+            <p>Double Tap to Skip</p>
             <div>
               <Link
                 className="btn btn-primary"
                 to="/popular-polls"
                 role="button"
               >
-                View More
+                Popular Polls
               </Link>
               <Link className="btn btn-primary" to="/signup-page" role="button">
                 Sign Up

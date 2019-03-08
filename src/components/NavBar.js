@@ -57,8 +57,9 @@ class NavBar extends Component {
                   Add Poll
                 </NavLink>
               </li>
-              <li>
-                {currentUser ? (
+
+              {currentUser ? (
+                <li>
                   <form className="form-inline my-2 my-lg-0">
                     <NavLink className="nav-link" to="/user-profile">
                       Username:
@@ -71,21 +72,21 @@ class NavBar extends Component {
                       Log Out
                     </button>
                   </form>
-                ) : (
-                  <div>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/signup-page">
-                        Sign Up
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/login-page">
-                        Log In
-                      </NavLink>
-                    </li>
-                  </div>
-                )}
-              </li>
+                </li>
+              ) : (
+                <div>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/signup-page">
+                      Sign Up
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/login-page">
+                      Log In
+                    </NavLink>
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
         </nav>

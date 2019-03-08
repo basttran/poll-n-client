@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./PollDetails.css";
-import { Link } from "react-router-dom";
 import { votePoll } from "../../api.js";
 import { getNextPoll } from "../../api.js";
 
@@ -63,7 +62,7 @@ class PollDetails extends Component {
               {/* <Link className="vote-link" to="skip-route"> */}
               <button onClick={() => this.sendVote(2)}>
                 <h5>
-                  <i className="fa fa-arrow-up" />
+                  <i className="fa fa-reply-all" />
                   SKIP
                 </h5>
               </button>

@@ -34,28 +34,30 @@ class PopularPolls extends Component {
 
         <div className="card-group">
           {pollArray.map(onePoll => {
+            //onePoll.votes. ==>  nb of YES
+
             return (
-              <Link
-                to={getPollAddress(onePoll)}
-                className="card"
-                key={onePoll._id}
-              >
+              <div className="card" key={onePoll._id}>
                 <div className="card-header">
                   <h5>{onePoll.title}</h5>
                 </div>
                 <div className="card-body">
-                  <div className="row">
-                    <h6 className="card-text">{onePoll.description}</h6>
+                  <div>
+                    <p className="card-text">{onePoll.description}</p>
                   </div>
-                  <div className="row">
-                    <p className="card-text">Nb Votants</p>
-                    <p className="card-text">Nb Verified</p>
-                    <p className="card-text">Yes</p>
-                    <p className="card-text">No</p>
-                    <p className="card-text">Skip</p>
+                  <div>
+                    <ul>
+                      <li className="card-text">
+                        {onePoll.votes.length} Voters
+                      </li>
+                      <li className="card-text">Nb Verified</li>
+                      <li className="card-text">Yes</li>
+                      <li className="card-text">No</li>
+                      <li className="card-text">Skip</li>
+                    </ul>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>
