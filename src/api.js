@@ -39,15 +39,20 @@ export function getPollDetails(pollId) {
 }
 
 export function getNextPoll(userId) {
-  return backendApi.get(`/api/next-poll?userId=${userId}`).catch(errorHandler);
+  return backendApi.get(`/api/next-poll`, userId).catch(errorHandler);
 }
+
+export function votePoll(voteSubmission, currentState) {
+  return backendApi.post("/api/vote-poll", voteSubmission,currentState).catch(errorHandler);
+}
+
+export function swipePoll(currentState) {
+  return backendApi.post(`/api/swipe-poll`, currentState).catch(errorHandler);
+}
+
 
 export function postPoll(pollSubmission) {
   return backendApi.post("/api/polls", pollSubmission).catch(errorHandler);
-}
-
-export function votePoll(voteSubmission) {
-  return backendApi.post("/api/vote-poll", voteSubmission).catch(errorHandler);
 }
 
 export function getNbYes(pollId) {
