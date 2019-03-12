@@ -48,7 +48,7 @@ class NavBar extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink className="nav-link" to="/popular-polls">
                   Popular Polls
                 </NavLink>
@@ -57,7 +57,7 @@ class NavBar extends Component {
                 <NavLink className="nav-link" to="/poll-carousel">
                   Fresh Polls
                 </NavLink>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <NavLink className="nav-link" to="/add-poll">
                   Add Poll

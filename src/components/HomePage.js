@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
+import { getLogOut } from "../api.js";
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  logoutClick(event) {
+    const { logoutConfirmed } = this.props;
+    event.preventDefault();
+    getLogOut().then(response => {
+      console.log("Log Out OK", response.data);
+      logoutConfirmed();
+    });
+  }
+  
   render() {
     const { currentUser } = this.props;
     return (
@@ -11,6 +26,7 @@ class HomePage extends Component {
         <img src="pollN-logo-img.png" alt="pollN-logo-img" />
 
         {currentUser ? (
+        
           <div>
             <h2>
               Welcome <b>{currentUser.username}</b> !
@@ -18,24 +34,18 @@ class HomePage extends Component {
             <div>
               <Link
                 className="btn btn-primary"
-                to="/popular-polls"
+                onClick={event => this.logoutClick(event)}
+                to="/"
                 role="button"
               >
-                Popular Polls
+                Log Out
               </Link>
               <Link
                 className="btn btn-primary"
-                to="/poll-carousel"
+                to="/user-profile"
                 role="button"
               >
-                Fresh Polls
-              </Link>
-              <Link
-                className="btn btn-primary"
-                to="/poll-swiper"
-                role="button"
-              >
-                Poll Swiper
+                User Profile
               </Link>
               <Link className="btn btn-primary" to="/my-polls" role="button">
                 My Polls
@@ -45,31 +55,26 @@ class HomePage extends Component {
               </Link>
               <Link
                 className="btn btn-primary"
-                to="/user-profile"
+                to="/poll-swiper"
                 role="button"
               >
-                User Profile
+                Poll Swiper
               </Link>
+              
             </div>
           </div>
         ) : (
           <div>
-            <p>Welcome to the new instant-polls messaging system!</p>
+            <p>Welcome to the new instant-vote system!</p>
             <p>
               Swipe <i className="fa fa-arrow-left" /> to vote YES
             </p>
             <p>
               Swipe <i className="fa fa-arrow-right" /> to vote NO
             </p>
-            <p>Double Tap to Skip</p>
-            <div>
-              <Link
-                className="btn btn-primary"
-                to="/popular-polls"
-                role="button"
-              >
-                Popular Polls
-              </Link>
+            <p>
+              Swipe <i className="fa fa-arrow-up" /> to vote BLANK
+            </p>            <div>
               <Link className="btn btn-primary" to="/signup-page" role="button">
                 Sign Up
               </Link>

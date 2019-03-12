@@ -28,7 +28,7 @@ class LoginPage extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/poll-carousel" />
+      <Redirect to="/" />
     ) : (
       <section className="LoginPage">
         <NavBar

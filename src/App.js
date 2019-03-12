@@ -45,7 +45,10 @@ class App extends Component {
             exact
             path="/"
             render={() => {
-              return <HomePage currentUser={this.state.currentUser} />;
+              return <HomePage 
+              currentUser={this.state.currentUser}
+              logoutConfirmed={user => this.updateUser(user)}
+              />;
             }}
           />
           <Route
@@ -73,7 +76,10 @@ class App extends Component {
           <Route
             path="/user-profile"
             render={() => {
-              return <ProfilePage currentUser={this.state.currentUser} />;
+              return <ProfilePage 
+              currentUser={this.state.currentUser}
+              logoutConfirmed={user => this.updateUser(user)}
+               />;
             }}
           />
           <Route
@@ -88,33 +94,10 @@ class App extends Component {
             }}
           />
           <Route
-            path="/poll-carousel"
-            render={() => {
-              return (
-                <PollCarousel
-                  currentUser={this.state.currentUser}
-                  logoutConfirmed={user => this.updateUser(user)}
-                />
-              );
-            }}
-          />
-          <Route
             path="/poll-swiper"
             render={() => {
               return (
                 <PollSwiper
-                  currentUser={this.state.currentUser}
-                  logoutConfirmed={user => this.updateUser(user)}
-                />
-              );
-            }}
-          />
-          <Route path="/poll-details/:pollId" component={PollDetails} />
-          <Route
-            path="/popular-polls"
-            render={() => {
-              return (
-                <PopularPolls
                   currentUser={this.state.currentUser}
                   logoutConfirmed={user => this.updateUser(user)}
                 />

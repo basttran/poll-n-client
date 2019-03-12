@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./PollSwiper.css";
 import { votePoll } from "../../api.js";
 import { getNewPoll } from "../../api.js";
+import { Link } from "react-router-dom";
+import NavBar from "../NavBar.js";
+
 import { getNextPoll } from "../../api.js";
 import { swipePoll } from "../../api.js";
 
@@ -12,12 +15,13 @@ class PollSwiper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {},
+      currentUser: this.props.currentUser,
       pollItem: {},
       voteValue: "",
       noPollsAvailable: false
     };
   }
+  
 
   componentDidMount() {
     const { currentUser } = this.props;
@@ -36,9 +40,8 @@ class PollSwiper extends Component {
 
   sendVote(voteValue) {
     console.log(voteValue);
-    this.setState({ voteValue: voteValue });
-    // const { currentUser } = this.state;
-    console.log("STATE BEFORE NEXT POLL", this.state);
+    this.setState({ voteValue: voteValue }, () =>  {
+      console.log("STATE BEFORE NEXT POLL", this.state);
     swipePoll(this.state).then(response => {
       console.log(response.data);
       this.setState({
@@ -46,38 +49,34 @@ class PollSwiper extends Component {
         voteValue: voteValue
       });
     });
+    });
+    // const { currentUser } = this.state;
+    
     // swipePoll(this.state).then(response => {
     //   this.setState({ pollItem: response.data });
     // });
   }
 
   render() {
-    const { pollItem } = this.state;
+    const { pollItem, currentUser } = this.state;
     return (
       <section className="PollSwiper">
-        <span>{pollItem.title}</span>
-        <Swipeable
-          pollItem={this.state.pollItem}
-          onSwipedLeft={() => this.sendVote(1)}
-          onSwipedRight={() => this.sendVote(0)}
-          onSwipedUp={() => this.sendVote(2)}
-          // onSwipedLeft={() => this.sendVote(1)}
-          // onSwipedRight={() => this.sendVote(0)}
-          // onSwipedUp={() => this.sendVote(2)}
-          // { preventDefaultTouchmoveEvent: true }
-        >
-          <div className="card bg-secondary">
+          <NavBar
+            currentUser={this.props.currentUser}
+            // title="Add Poll"
+            logoutConfirmed={user => this.props.logoutConfirmed(user)}
+          />
+          { !pollItem ? (
+            <div className="card bg-secondary">
             <div className="card-header">
               <h1 className="card-title">
-                {pollItem ? <span>{pollItem.shortText}</span> : <p />}
+              You are out of polls {currentUser.username}
               </h1>
             </div>
             <div className="card-body">
-              {/* <h5 className="card-subtitle mb-2 text-muted">
-                {pollItem.createdAt}
-              </h5> */}
+
               <h5 className="card-text">
-                {pollItem ? <span>{pollItem.longText}</span> : <p />}
+                Please consider logging out or adding new polls!
               </h5>
 
               <ul className="list-group list-group-flush">
@@ -89,7 +88,37 @@ class PollSwiper extends Component {
               </ul>
             </div>
           </div>
-        </Swipeable>
+          ) : (
+            <Swipeable
+            pollItem={pollItem}
+            onSwipedLeft={() => this.sendVote(1)}
+            onSwipedRight={() => this.sendVote(0)}
+            onSwipedUp={() => this.sendVote(2)}
+          >
+            <div className="card bg-secondary">
+              <div className="card-header">
+                <h1 className="card-title">
+                </h1>
+              </div>
+              <div className="card-body">
+  
+                <h5 className="card-text">
+                  {pollItem.description}
+                </h5>
+  
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">Nb Votants</li>
+                  <li className="list-group-item">Nb Verified</li>
+                  <li className="list-group-item">Nb Yes</li>
+                  <li className="list-group-item">Nb No</li>
+                  <li className="list-group-item">Nb Skip</li>
+                </ul>
+              </div>
+            </div>
+          </Swipeable>
+          )}
+          
+
       </section>
     );
   }
