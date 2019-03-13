@@ -21,7 +21,6 @@ class PollSwiper extends Component {
       noPollsAvailable: false
     };
   }
-  
 
   componentDidMount() {
     const { currentUser } = this.props;
@@ -40,18 +39,18 @@ class PollSwiper extends Component {
 
   sendVote(voteValue) {
     console.log(voteValue);
-    this.setState({ voteValue: voteValue }, () =>  {
+    this.setState({ voteValue: voteValue }, () => {
       console.log("STATE BEFORE NEXT POLL", this.state);
-    swipePoll(this.state).then(response => {
-      console.log(response.data);
-      this.setState({
-        pollItem: response.data,
-        voteValue: voteValue
+      swipePoll(this.state).then(response => {
+        console.log(response.data);
+        this.setState({
+          pollItem: response.data,
+          voteValue: voteValue
+        });
       });
     });
-    });
     // const { currentUser } = this.state;
-    
+
     // swipePoll(this.state).then(response => {
     //   this.setState({ pollItem: response.data });
     // });
@@ -61,64 +60,44 @@ class PollSwiper extends Component {
     const { pollItem, currentUser } = this.state;
     return (
       <section className="PollSwiper">
-          <NavBar
-            currentUser={this.props.currentUser}
-            // title="Add Poll"
-            logoutConfirmed={user => this.props.logoutConfirmed(user)}
-          />
-          { !pollItem ? (
+        <NavBar
+          currentUser={this.props.currentUser}
+          // title="Add Poll"
+          logoutConfirmed={user => this.props.logoutConfirmed(user)}
+        />
+        {!pollItem ? (
+          <div className="swiper">
             <div className="card bg-secondary">
-            <div className="card-header">
-              <h1 className="card-title">
-              You are out of polls {currentUser.username}
-              </h1>
-            </div>
-            <div className="card-body">
-
-              <h5 className="card-text">
-                Please consider logging out or adding new polls!
-              </h5>
-
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Nb Votants</li>
-                <li className="list-group-item">Nb Verified</li>
-                <li className="list-group-item">Nb Yes</li>
-                <li className="list-group-item">Nb No</li>
-                <li className="list-group-item">Nb Skip</li>
-              </ul>
+              <div className="card-header">
+                <h1 className="card-title">
+                  You are out of polls {currentUser.username}
+                </h1>
+              </div>
+              <div className="card-body">
+                <h5 className="card-text">
+                  Please consider logging out or adding new polls!
+                </h5>
+              </div>
             </div>
           </div>
-          ) : (
-            <Swipeable
+        ) : (
+          <Swipeable
             pollItem={pollItem}
             onSwipedLeft={() => this.sendVote(1)}
             onSwipedRight={() => this.sendVote(0)}
             onSwipedUp={() => this.sendVote(2)}
+            className="swiper"
           >
             <div className="card bg-secondary">
               <div className="card-header">
-                <h1 className="card-title">
-                </h1>
+                <h1 className="card-title">{pollItem.title}</h1>
               </div>
               <div className="card-body">
-  
-                <h5 className="card-text">
-                  {pollItem.description}
-                </h5>
-  
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Nb Votants</li>
-                  <li className="list-group-item">Nb Verified</li>
-                  <li className="list-group-item">Nb Yes</li>
-                  <li className="list-group-item">Nb No</li>
-                  <li className="list-group-item">Nb Skip</li>
-                </ul>
+                <h5 className="card-text">{pollItem.description}</h5>
               </div>
             </div>
           </Swipeable>
-          )}
-          
-
+        )}
       </section>
     );
   }
